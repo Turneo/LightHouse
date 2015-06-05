@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.visualstudio.2.0.0\build\portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid\xunit.runner.visualstudio.props" Condition="Exists('..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.visualstudio.2.0.0\build\portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid\xunit.runner.visualstudio.props')" />
+  <Import Project="..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.runner.msbuild.props" Condition="Exists('..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.runner.msbuild.props')" />
+  <Import Project="..\..\..\..\..\..\Libraries\nuget\packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props" Condition="Exists('..\..\..\..\..\..\Libraries\nuget\packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5BCC8C06-DCE3-4926-B08C-80A1FAA974F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LightHouse.Core.Testing</RootNamespace>
+    <AssemblyName>LightHouse.Core.Testing</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>1fee8cf0</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\Deployment\Testing\Current\Portable\Profile78\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\..\Deployment\Testing\Current\Portable\Profile78\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Attributes\Path.cs" />
+    <Compile Include="Caching\DataRegion.cs" />
+    <Compile Include="Collections\ContractList.cs" />
+    <Compile Include="Collections\DataList.cs" />
+    <Compile Include="Collections\SurrogateList.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="ContractEnumerator.cs" />
+    <Compile Include="Caching\DataCache.cs" />
+    <Compile Include="ContractObject.cs" />
+    <Compile Include="DataEnumerator.cs" />
+    <Compile Include="DataObject.cs" />
+    <Compile Include="Elite\Building\Builder.cs" />
+    <Compile Include="Elite\Cloning\Cloner.cs" />
+    <Compile Include="Elite\Converting\Converter.cs" />
+    <Compile Include="Elite\Locating\Locator.cs" />
+    <Compile Include="Elite\Merging\Merger.cs" />
+    <Compile Include="Elite\Reflecting\Reflector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Surrogates\ProjectSurrogate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="LightHouse.Core">
+      <HintPath>..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LightHouse.Model">
+      <HintPath>..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Model.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LightHouse.Ontology">
+      <HintPath>..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Ontology.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LightHouse.Testing">
+      <HintPath>..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Testing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LightHouse.Testing.xUnit">
+      <HintPath>..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Testing.xUnit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="xunit.abstractions">
+      <HintPath>..\..\..\..\..\..\Libraries\nuget\packages\xunit.abstractions.2.0.0\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.abstractions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="xunit.assert">
+      <HintPath>..\..\..\..\..\..\Libraries\nuget\packages\xunit.assert.2.0.0\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.assert.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="xunit.core">
+      <HintPath>..\..\..\..\..\..\Libraries\nuget\packages\xunit.extensibility.core.2.0.0\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.runner.msbuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.runner.msbuild.props'))" />
+    <Error Condition="!Exists('..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.visualstudio.2.0.0\build\portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.visualstudio.2.0.0\build\portable-net45+aspnetcore50+win+wpa81+wp80+monotouch+monoandroid\xunit.runner.visualstudio.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
