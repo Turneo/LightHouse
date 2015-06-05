@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E26611F9-FAAF-419E-A38D-9924A58EF431}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LightHouse.Core</RootNamespace>
+    <AssemblyName>LightHouse.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Include\Libraries\LightHouse\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>lighthouse.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Include\Libraries\LightHouse\x64\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LightHouse.Bootstrap">
+      <HintPath>..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Bootstrap.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Caching\DataCache.cs" />
+    <Compile Include="Caching\DataRegion.cs" />
+    <Compile Include="Collections\ContractEnumerator.cs" />
+    <Compile Include="Collections\DataEnumerator.cs" />
+    <Compile Include="Collections\IContractList.cs" />
+    <Compile Include="Collections\IDataList.cs" />
+    <Compile Include="Attributes\Path.cs" />
+    <Compile Include="Dynamic\SurrogateObject.cs" />
+    <Compile Include="Elite\Converting\Converter.cs" />
+    <Compile Include="Elite\Notifying\WeakEventHandler.cs" />
+    <Compile Include="IContractObject.cs" />
+    <Compile Include="IDataObject.cs" />
+    <Compile Include="IObject.cs" />
+    <Compile Include="ISurrogateObject.cs" />
+    <Compile Include="Notifications\ObjectCreatedEventArgs.cs" />
+    <Compile Include="Notifications\ObjectCreatedEventHandler.cs" />
+    <Compile Include="Notifications\UpdateObjectPropertyEventArgs.cs" />
+    <Compile Include="Notifications\UpdateObjectPropertyEventHandler.cs" />
+    <Compile Include="Queries\IQuery.cs" />
+    <Compile Include="Queries\IQuery[T].cs" />
+    <Compile Include="Collections\IQueryableList[T].cs" />
+    <Compile Include="Collections\IContractList[T].cs" />
+    <Compile Include="Collections\IDataList[T].cs" />
+    <Compile Include="Collections\ISurrogateList[T].cs" />
+    <Compile Include="Collections\QueryableList[T].cs" />
+    <Compile Include="Collections\SurrogateList[T].cs" />
+    <Compile Include="Attributes\Contract.cs" />
+    <Compile Include="Collections\ContractList[T].cs" />
+    <Compile Include="ContractObject.cs" />
+    <Compile Include="Collections\DataList[T].cs" />
+    <Compile Include="DataObject.cs" />
+    <Compile Include="Elite\Cloning\Cloner.cs" />
+    <Compile Include="Elite\Loading\LoadEventArgs.cs" />
+    <Compile Include="Elite\Loading\Loader.cs" />
+    <Compile Include="Elite\Building\Builder.cs" />
+    <Compile Include="Elite\Compiling\Compiler.cs" />
+    <Compile Include="Elite\Locating\TypeInfo.cs" />
+    <Compile Include="Elite\Locating\ContractTypeInfo.cs" />
+    <Compile Include="Elite\Locating\DataTypeInfo.cs" />
+    <Compile Include="Elite\Locating\Locator.cs" />
+    <Compile Include="Elite\Merging\MergeExecutor.cs" />
+    <Compile Include="Elite\Merging\Merger.cs" />
+    <Compile Include="Elite\Notifying\Notifier.cs" />
+    <Compile Include="Elite\Reflecting\Reflector.cs" />
+    <Compile Include="Elite\Core.cs" />
+    <Compile Include="IReferenceObject.cs" />
+    <Compile Include="Notifications\INotifyPropertyChanging.cs" />
+    <Compile Include="Notifications\PropertyChangingEventArgs.cs" />
+    <Compile Include="Notifications\PropertyChangingEventHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxies\ProxyInformation.cs" />
+    <Compile Include="SurrogateObject.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="LightHouse.Core.nuspec" />
+    <None Include="lighthouse.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
