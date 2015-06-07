@@ -31,29 +31,29 @@ Turneo reserves all rights not expressly granted in these terms and conditions.
 
 Open Source License List
 
-Name                                                     Version
-Academic Free License                                    2.0
-Apache Software License                                  2.0
-Apple Public Source License                              2.0
-Artistic license                                         From Perl 5.8.0
-BSD license                                              July 22 1999
-Common Development and Distribution License (CDDL)       1.0
-Common Public License                                    1.0
-Eclipse Public License                                   1.0
-Educational Community License                            2.0
-European Union Public License (EUPL)                     1.1
-GNU General Public License (GPL)                         2.0
-GNU Library or "Lesser" General Public License (LGPL)    3.0
-Jabber Open Source License                               1.0
-MIT License (As listed in file MIT-License.txt)          -
-Mozilla Public License (MPL)                             1.0/1.1
-Open Software License                                    2.0
-OpenSSL license (with original SSLeay license)           2003 (1998)
-University of Illinois/NCSA Open Source License          -
-W3C License                                              2001
-X11 License                                              2001
-Zlib/libpng License                                      -
-
+| Name          | Version       | 
+| ------------- |:-------------:| 
+| Academic Free License      | 2.0 |
+| Apache Software License      | 2.0 | 
+| Apple Public Source License       | 2.0 | 
+| Artistic license         | From Perl 5.8.0 | 
+| BSD license      | July 22 1999 | 
+| Common Development and Distribution License (CDDL)      | 1.0 | 
+| Common Public License           | 1.0 | 
+| Eclipse Public License      | 1.0 | 
+| Educational Community License      | 2.0  | 
+| European Union Public License (EUPL)      | 1.1 | 
+| GNU General Public License (GPL)      | 2.0 | 
+| GNU Library or "Lesser" General Public License (LGPL)      | 3.0 | 
+| Jabber Open Source License | 1.0 | 
+| MIT License (As listed in file MIT-License.txt)      | - | 
+| Mozilla Public License (MPL)      | 1.0/1.1 | 
+| Open Software License   | 2.0 | 
+| OpenSSL license (with original SSLeay license)      | 2003 (1998) | 
+| University of Illinois/NCSA Open Source License      | - | 
+| W3C License       | 2001 | 
+| X11 License         | 2001 | 
+| Zlib/libpng License        | - | 
 
 COMMERCIAL LICENSE
 ===========================================================================
