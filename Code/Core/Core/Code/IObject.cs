@@ -10,7 +10,7 @@ using LightHouse.Core.Notifications;
 namespace LightHouse.Core
 {
     /// <summary>
-    /// Functionality to be implemented by all Object's.
+    /// Functionality to be implemented by all Objects.
     /// </summary>
     public interface IObject : INotifyPropertyChanged, INotifyPropertyChanging
     {

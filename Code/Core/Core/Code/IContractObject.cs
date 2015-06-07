@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LightHouse.Core
 {
     /// <summary>
-    /// Functionality to be implemented by all ContractObject's.
+    /// Functionality to be implemented by all ContractObjects.
     /// </summary>
     public interface IContractObject : IObject
     {

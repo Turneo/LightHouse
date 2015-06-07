@@ -112,7 +112,8 @@
     <Compile Include="Attributes\Path.cs" />
     <Compile Include="Dynamic\SurrogateObject.cs" />
     <Compile Include="Elite\Converting\Converter.cs" />
-    <Compile Include="Elite\Notifying\WeakEventHandler.cs" />
+    <Compile Include="Notifications\EventHandlerExtensions.cs" />
+    <Compile Include="Notifications\WeakEventHandler.cs" />
     <Compile Include="IContractObject.cs" />
     <Compile Include="IDataObject.cs" />
     <Compile Include="IObject.cs" />

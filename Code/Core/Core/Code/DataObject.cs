@@ -14,7 +14,7 @@ using LightHouse.Core.Proxies;
 namespace LightHouse.Core
 {
     /// <summary>
-    /// Represents the base class of all DataObject's. A DataObject holds the data of the application.
+    /// Represents the base class of all DataObjects. A DataObject holds the data of the application.
     public class DataObject : IDataObject
     {
         /// <summary>
@@ -64,7 +64,7 @@ namespace LightHouse.Core
                 AddContractObjectToCache(contractObject.GetType().FullName, contractObject);
             }
 
-            //LightHouse.Elite.Core.Notifier.AddHandler(UpdateProperty_Handler);
+            LightHouse.Elite.Core.Notifier.AddHandler<UpdateObjectPropertyEventArgs>(UpdateProperty_Handler);
         }
 
         /// <summary>
@@ -169,9 +169,9 @@ namespace LightHouse.Core
         }
 
         /// <summary>
-        /// Gets all the ContractObject's that hold this DataObject.
+        /// Gets all the ContractObjects that hold this DataObject.
         /// </summary>
-        /// <returns>Returns the ContractObject's in a KeyValuePair (Name and ContractObject) combination.</returns>
+        /// <returns>Returns the ContractObjects in a KeyValuePair (Name and ContractObject) combination.</returns>
         protected IEnumerable<KeyValuePair<String, Object>> GetObjectsInContractObjects()
         {
             return dynamicCache.GetObjectsInRegion("ContractObjects");
@@ -198,12 +198,12 @@ namespace LightHouse.Core
         /// <summary>
         /// Occurs when a property of the ContractObject has changed.
         /// </summary>
-        public PropertyChangedEventHandler ContractPropertyChanged { get; set; }
+        public EventHandler<PropertyChangedEventArgs> ContractPropertyChanged { get; set; }
 
         /// <summary>
         /// Occurs when a property of the ContractObject is changing.
         /// </summary>
-        public PropertyChangingEventHandler ContractPropertyChanging { get; set; }
+        public EventHandler<PropertyChangingEventArgs> ContractPropertyChanging { get; set; }
 
         /// <summary>
         /// Stores the default proxy status for the properties.
@@ -323,6 +323,11 @@ namespace LightHouse.Core
         {
             if ((oldValue == null && newValue != null) || (oldValue != null && !oldValue.Equals(newValue)))
             {
+                if (propertyChanged != null)
+                {
+                    propertyChanged(this, new PropertyChangedEventArgs(name));
+                }
+
                 LightHouse.Elite.Core.Notifier.Notify(this, new PropertyChangedEventArgs(name));
 
                 foreach (KeyValuePair<String, Object> pair in GetObjectsInContractObjects())
@@ -342,6 +347,11 @@ namespace LightHouse.Core
         {
             if ((oldValue == null && newValue != null) || (oldValue != null && !oldValue.Equals(newValue)))
             {
+                if (propertyChanging != null)
+                {
+                    propertyChanging(this, new PropertyChangingEventArgs(name, newValue, oldValue));
+                }
+
                 LightHouse.Elite.Core.Notifier.Notify(this, new PropertyChangingEventArgs(name, newValue, oldValue));
 
                 foreach (KeyValuePair<String, Object> pair in GetObjectsInContractObjects())
@@ -702,11 +712,39 @@ namespace LightHouse.Core
         /// <summary>
         /// Occurs when a property of the SurrogateObject has changed.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private EventHandler<PropertyChangedEventArgs> propertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add
+            {
+                if (!propertyChanged.ContainsHandler<PropertyChangedEventArgs>(value))
+                {
+                    propertyChanged += value.MakeWeak<PropertyChangedEventArgs>(e => { propertyChanged -= e; });
+                }
+            }
+            remove
+            {
+
+            }
+        }
 
         /// <summary>
         /// Occurs when a property of the SurrogateObject is changing.
         /// </summary>
-        public event PropertyChangingEventHandler PropertyChanging;
+        private EventHandler<PropertyChangingEventArgs> propertyChanging;
+        public event PropertyChangingEventHandler PropertyChanging
+        {
+            add
+            {
+                if (!propertyChanging.ContainsHandler<PropertyChangingEventArgs>(value))
+                {
+                    propertyChanging += value.MakeWeak<PropertyChangingEventArgs>(e => { propertyChanging -= e; });
+                }
+            }
+            remove
+            {
+
+            }
+        }
    }
 }

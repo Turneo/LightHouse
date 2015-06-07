@@ -1,0 +1,84 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="LightHouse.Core.dll" #>
+<#@ import namespace="LightHouse.Core.Model" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="Element" type="LightHouse.Model.Element" #>
+using System;
+using System.Runtime.Serialization;
+using System.Collections.Generic; 
+
+using LightHouse.Core;
+using LightHouse.Core.Collections;
+using LightHouse.Core.Localization;
+
+using LightHouse.Model;
+
+namespace <# if(Element.Domain != null && Element.Domain.Reference != null) { #> <#= Element.Domain.Reference #> <#  }  #>
+{
+	[LightHouse.Core.Attributes.Contract(typeof(<#= Element.ShortName #>), true)]
+	public class <#= Element.ShortName #> <# if(Element.Parent != null && Element.Parent.ShortName != null && Element.Parent.Domain != null && Element.Parent.Domain.Reference != null)
+	{ #>: <#= Element.Parent.Domain.Reference #>.<#= Element.Parent.ShortName #>
+<#  }  #>
+	{
+		public <#= Element.ShortName #>(LightHouse.Core.ContractObject contractObject, Boolean isProxy) : base(contractObject, isProxy)
+		{
+			if(this.GetType() != typeof(EntityObject))
+			{
+				return;
+			}
+
+			this.proxyInformation = (ProxyInformation)new <#= Element.ShortName #>ProxyInformation();
+			this.SetProxyInformation(isProxy);
+		}
+
+		public <#= Element.ShortName #>(Boolean isProxy) : this(null, isProxy) { }
+
+		public <#= Element.ShortName #> (ContractObject contractObject) : this(contractObject, false) { }
+
+		public <#= Element.ShortName #>() : this(false) { }
+
+	<# foreach (Value value in Element.Characteristics)
+	{ 
+		Type type = GenerateCodeService.GetTypeFromValue(value);#>
+
+		private <#= type.Name #> <#= value.ShortName.ToLower() #>;
+		public virtual <#= type.Name #> <#= value.ShortName #>
+		{
+			get 
+			{
+				if (this.GetProxyInformation().<#= value.ShortName #>)
+				{
+					LightHouse.Elite.Storage.Loader.UnProxy((DataObject)this, (ProxyInformation)this.GetProxyInformation(), (IContractList<ElementPath>)new ContractList<ElementPath>()
+					{
+						new ElementPath()
+						{
+							Path = "<#= value.ShortName #>"
+						}
+					});
+				}
+				return <#= value.ShortName.ToLower() #>;
+			}
+			set
+			{
+				this.<#= value.ShortName.ToLower() #> = value;
+				this.GetProxyInformation().<#= value.ShortName #> = false;
+			}
+		}
+<# } #>
+		
+		protected virtual <#= Element.ShortName #>ProxyInformation GetProxyInformation()
+		{
+			return (<#= Element.ShortName #>ProxyInformation)this.proxyInformation;
+		}
+
+		public class <#= Element.ShortName #>ProxyInformation <# if(Element.Parent != null && Element.Parent.ShortName != null && Element.Parent.Domain != null && Element.Parent.Domain.Reference != null)
+		{ #>: <#= Element.Parent.Domain.Reference #>.<#= Element.Parent.ShortName #>.<#= Element.Parent.ShortName #>ProxyInformation <# } #>
+		
+		{<# foreach (Value value in Element.Characteristics){ #> 
+			public Boolean <#= value.ShortName #> { get; set; }<# } #> 
+		}
+	}
+}

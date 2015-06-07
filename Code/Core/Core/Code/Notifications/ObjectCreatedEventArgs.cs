@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LightHouse.Core.Notifications
 {
     /// <summary>
-    /// Event arguments for the ObjectCreatedEvent.
+    /// Event arguments for the ObjectCreated event.
     /// </summary>
     public class ObjectCreatedEventArgs : EventArgs
     {

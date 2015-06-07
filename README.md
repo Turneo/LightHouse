@@ -2,7 +2,7 @@
 
 A business application framework. 
 
-Several NuGet packages are available:
+Several NuGet packages are already available. More will be published in the coming months:
 
 https://www.nuget.org/packages/LightHouse/
 https://www.nuget.org/packages/LightHouse.Core/

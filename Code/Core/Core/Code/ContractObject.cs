@@ -12,7 +12,7 @@ using LightHouse.Core.Notifications;
 namespace LightHouse.Core
 {
     /// <summary>
-    /// Represents the base class of all ContractObject's. A contract is similar to an interface but provides
+    /// Represents the base class of all ContractObjects. A contract is similar to an interface but provides
     /// several key improvements (more details in the knowledge pages) that allows LightHouse to be a modular 
     /// and composable framework.
     /// </summary>
@@ -25,11 +25,15 @@ namespace LightHouse.Core
         {
             add            
             {
-                ConvertTo<IDataObject>().ContractPropertyChanging += value;
+                IDataObject dataObject = ConvertTo<IDataObject>();
+                if (!dataObject.ContractPropertyChanging.ContainsHandler<PropertyChangingEventArgs>(value))
+                {
+                    dataObject.ContractPropertyChanging += value.MakeWeak<PropertyChangingEventArgs>(eventHandler => { dataObject.ContractPropertyChanging -= eventHandler; });
+                }
             }
             remove
             {
-                ConvertTo<IDataObject>().ContractPropertyChanging -= value;
+                
             }
         }
 
@@ -40,11 +44,16 @@ namespace LightHouse.Core
         {
             add
             {
-                ConvertTo<IDataObject>().ContractPropertyChanged += value;
+                IDataObject dataObject = ConvertTo<IDataObject>();
+
+                if (!dataObject.ContractPropertyChanged.ContainsHandler<PropertyChangedEventArgs>(value))
+                {
+                    dataObject.ContractPropertyChanged += value.MakeWeak<PropertyChangedEventArgs>(eventHandler => { dataObject.ContractPropertyChanged -= eventHandler; });
+                }
             }
             remove
             {
-                ConvertTo<IDataObject>().ContractPropertyChanged -= value;
+                
             }
         }
 
@@ -140,7 +149,7 @@ namespace LightHouse.Core
         /// <param name="name">Name of the property that is changing.</param>
         protected virtual void OnPropertyChanging(String name, Object newValue = null, Object oldValue = null)
         {
-            PropertyChangingEventHandler handler = ConvertTo<IDataObject>().ContractPropertyChanging;
+            EventHandler<PropertyChangingEventArgs> handler = ConvertTo<IDataObject>().ContractPropertyChanging;
 
             if (handler != null)
             {
@@ -154,7 +163,7 @@ namespace LightHouse.Core
         /// <param name="name">Name of the property that has changed.</param>
         protected virtual void OnPropertyChanged(String name)
         {
-            PropertyChangedEventHandler handler = ConvertTo<IDataObject>().ContractPropertyChanged;
+            EventHandler<PropertyChangedEventArgs> handler = ConvertTo<IDataObject>().ContractPropertyChanged;
 
             if (handler != null)
             {
@@ -380,7 +389,7 @@ namespace LightHouse.Core
         }
 
         /// <summary>
-        /// Overides the operator (==) for comparing two ContractObject's.
+        /// Overides the operator (==) for comparing two ContractObjects.
         /// </summary>
         /// <param name="object1">First object to compare.</param>
         /// <param name="object2">Second object to compare.</param>
@@ -396,7 +405,7 @@ namespace LightHouse.Core
         }
 
         /// <summary>
-        /// Overides the operator (!=) for comparing two ContractObject's.
+        /// Overides the operator (!=) for comparing two ContractObjects.
         /// </summary>
         /// <param name="object1">First object to compare.</param>
         /// <param name="object2">Second object to compare.</param>

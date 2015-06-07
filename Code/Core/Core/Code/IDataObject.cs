@@ -10,19 +10,19 @@ using LightHouse.Core.Notifications;
 namespace LightHouse.Core
 {
     /// <summary>
-    /// Functionality to be implemented by all DataObject's.
+    /// Functionality to be implemented by all DataObjects.
     /// </summary>
     public interface IDataObject : IObject 
     {
         /// <summary>
         /// Occurs when a property of the ContractObject has changed.
         /// </summary>
-        PropertyChangedEventHandler ContractPropertyChanged { get; set; }
+        EventHandler<PropertyChangedEventArgs> ContractPropertyChanged { get; set; }
         
         /// <summary>
         /// Occurs when a property of the ContractObject is changing.
         /// </summary>
-        PropertyChangingEventHandler ContractPropertyChanging { get; set; }
+        EventHandler<PropertyChangingEventArgs> ContractPropertyChanging { get; set; }
 
         /// <summary>
         /// Information about the Type if the DataObject has been generated dynamically.

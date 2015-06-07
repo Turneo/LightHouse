@@ -34,7 +34,7 @@ namespace LightHouse.Core.Testing
 
             TimeSpan timeDifference = DateTime.Now.Subtract(startTime);
 
-            Assert.True(timeDifference.TotalSeconds < 1.5);
+            Assert.True(timeDifference.TotalSeconds < 1.5, String.Format("The creation of 10000 persons took: {0} ms.", timeDifference.TotalMilliseconds));
             Assert.Equal(people.Count, 10000);
         }
     }

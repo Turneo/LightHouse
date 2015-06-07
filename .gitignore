@@ -1,0 +1,11 @@
+*.cache
+Code/Core/Core/Testing/Code/obj/Debug/LightHouse.Core.Testing.dll
+*.pdb
+Code/Core/Core/Testing/Code/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+Code/Core/Core/Testing/Code/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+Code/Core/Core/Testing/Code/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+Code/Core/Core/Testing/Code/obj/Debug/LightHouse.Core.Testing.csproj.FileListAbsolute.txt
+Code/Core/Core/Testing/Native/iOS/LightHouse.Core.Testing.Runner.iOS/bin/iPhone/Debug/LightHouse.Bootstrap.dll
+*.mdb
+*.nuspec
+Code/Core/Core/Code/LightHouse.Core.v12.suo

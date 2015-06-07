@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.core.2.0.0\build\Xamarin.iOS\xunit.core.props" Condition="Exists('..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.core.2.0.0\build\Xamarin.iOS\xunit.core.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{0EDF7697-BEB7-46A6-A8CD-5655023AD37B}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>LightHouse.Core.Testing.Runner.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>LightHouseCoreTestingRunneriOS</AssemblyName>
+    <NuGetPackageImportStamp>18d5e5ef</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>True</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchSdkVersion>8.2</MtouchSdkVersion>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchExtraArgs>
+    </MtouchExtraArgs>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchEnableGenericValueTypeSharing>True</MtouchEnableGenericValueTypeSharing>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>
+    </CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>
+    </CodesignProvision>
+    <CodesignResourceRules />
+    <CodesignExtraArgs />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>True</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Caching\DataCacheRunner.cs" />
+    <Compile Include="Collections\SurrogateListRunner.cs" />
+    <Compile Include="ContractEnumeratorRunner.cs" />
+    <Compile Include="ContractObjectRunner.cs" />
+    <Compile Include="DataEnumeratorRunner.cs" />
+    <Compile Include="DataObjectRunner.cs" />
+    <Compile Include="Elite\Building\BuilderRunner.cs" />
+    <Compile Include="Elite\Cloning\ClonerRunner.cs" />
+    <Compile Include="Elite\Locating\LocatorRunner.cs" />
+    <Compile Include="Elite\Merging\MergerRunner.cs" />
+    <Compile Include="Elite\Reflecting\ReflectorRunner.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="TestConfiguration.cs" />
+    <Compile Include="TestRunner.cs" />
+    <None Include="AppDelegate.cs.org" />
+    <None Include="Info.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default@2x.png" />
+    <BundleResource Include="Resources\Default-568h@2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="LightHouse.Bootstrap">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Native\Xamarin.iOS10\LightHouse.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Core">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Core.Testing">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Testing\Current\Portable\Profile78\LightHouse.Core.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Execution">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Execution.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Execution.Embedded">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Execution.Embedded.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Execution.Provider.Embedded">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Execution.Provider.Embedded.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Model">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Ontology">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Ontology.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Storage">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Testing">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Testing.xUnit">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Testing.xUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="LightHouse.Testing.xUnit.Native">
+      <HintPath>..\..\..\..\..\..\..\Deployment\Libraries\Current\Native\Xamarin.iOS10\LightHouse.Testing.xUnit.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoTouch.NUnitLite" />
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\Xamarin.Forms.1.4.0.6341\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\Xamarin.Forms.1.4.0.6341\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\Xamarin.Forms.1.4.0.6341\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.abstractions">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.abstractions.2.0.0\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.assert">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.assert.2.0.0\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.assert.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.extensibility.core.2.0.0\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.execution.iOS-Universal, Version=2.0.0.2929, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.extensibility.execution.2.0.0\lib\Xamarin.iOS\xunit.execution.iOS-Universal.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.runner.devices">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.devices.1.0.0\lib\Xamarin.iOS\xunit.runner.devices.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.runner.utility.iOS-Universal">
+      <HintPath>..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.utility.2.0.0\lib\Xamarin.iOS\xunit.runner.utility.iOS-Universal.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entitlements.plist" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.core.2.0.0\build\Xamarin.iOS\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.core.2.0.0\build\Xamarin.iOS\xunit.core.props'))" />
+    <Error Condition="!Exists('..\..\..\..\..\..\..\Libraries\nuget\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\..\Libraries\nuget\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.devices.1.0.0\build\Xamarin.iOS\xunit.runner.devices.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.devices.1.0.0\build\Xamarin.iOS\xunit.runner.devices.targets'))" />
+  </Target>
+  <Import Project="..\..\..\..\..\..\..\Libraries\nuget\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\..\..\..\..\..\Libraries\nuget\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.devices.1.0.0\build\Xamarin.iOS\xunit.runner.devices.targets" Condition="Exists('..\..\..\..\..\..\..\Libraries\nuget\packages\xunit.runner.devices.1.0.0\build\Xamarin.iOS\xunit.runner.devices.targets')" />
+</Project>

@@ -1,0 +1,41 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="LightHouse.Core.dll" #>
+<#@ import namespace="LightHouse.Model" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="Element" type="LightHouse.Model.Element" #>
+
+using System;
+using System.Runtime.Serialization;
+using System.Collections.Generic; 
+
+using LightHouse.Core;
+using LightHouse.Localization;
+using LightHouse.Model;
+
+namespace <# if(Element.Domain != null && Element.Domain.Reference != null) { #> <#= Element.Domain.Reference #>  <#  }  #>
+{
+	[DataContract]
+	public class <#= Element.ShortName #> <# if(Element.Parent != null && Element.Parent.ShortName != null && Element.Parent.Domain != null && Element.Parent.Domain.Reference != null)
+	 { 	 #>: <#= Element.Parent.Domain.Reference #>.<#= Element.Parent.ShortName #>
+	 <#  }  #>
+	{
+		public <#= Element.ShortName #>() : base() { }
+		public <#= Element.ShortName #>(Boolean isProxy) : base(isProxy) { }
+		public <#= Element.ShortName #>(DataObject dataObject) : base(dataObject) { }
+		public <#= Element.ShortName #>(ContractObject contractObject) : base(contractObject) { }
+		
+	<# foreach (Value value in Element.Characteristics)
+	{ 
+		Type type = GenerateCodeService.GetTypeFromValue(value);#>
+	[DataMember]	
+		public virtual <#= type.Name #> <#= value.ShortName #>
+		{
+			get { return GetContractProperty<<#= type.Name #>>(String.Format("{0}.{1}", typeof(<#= Element.ShortName #>).FullName, "<#= value.ShortName #>"));}
+			set { SetContractProperty(String.Format("{0}.{1}", typeof(<#= Element.ShortName #>).FullName, "<#= value.ShortName #>" ), value); }
+		}
+	<# } #>
+  }
+}

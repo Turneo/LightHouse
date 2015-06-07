@@ -14,7 +14,7 @@ using LightHouse.Core.Notifications;
 namespace LightHouse.Core
 {
     /// <summary>
-    /// Object to be used as a surrogate for ContractObject's and DataObject's.
+    /// Object to be used as a surrogate for ContractObjects and DataObjects.
     /// </summary>
     public class SurrogateObject : ISurrogateObject
     {

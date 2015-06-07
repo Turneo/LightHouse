@@ -15,6 +15,7 @@ namespace LightHouse.Core.Caching
         /// Dictionary containing all the objects of the region.
         /// </summary>
         private IDictionary<String, Object> objects = new Dictionary<String, Object>();
+
         /// <summary>
         /// Dictionary holding all the regions of the cache.
         /// </summary>
