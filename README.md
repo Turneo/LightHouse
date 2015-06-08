@@ -6,6 +6,11 @@ We are slowly uploading LightHouse to GitHub. This will be a process of several 
 
 You will find in every LightHouse component a Code, Documentation and Testing folder. The Code folder contains the source code, the Documentation folder contains all related documents like drafts, specifications, guidelines and how-to's. The Testing folder contains the unit and integration tests for the different platforms.
 
+More information about LightHouse can be found in the following readme and wiki:
+
+https://github.com/Turneo/LightHouse/blob/master/Documentation/README.md
+https://github.com/Turneo/LightHouse/wiki
+
 LightHouse is dual licensed and as such can be used for Open Source projects for free. Contact us if you are interested in a commercial license.
 
 Several NuGet packages are already available. More will be published in the coming months:
