@@ -1,13 +1,12 @@
 
-#LightHouse (Guideline)
+# Guidelines (LightHouse)
 
-### Class Guideline
+### Comments
 
-Each Class, Property, Field and Method requires a comment.
+- Each Class, Property, Field and Method requires a comment.
+- Each comment should start upper case and end with an ".".
 
-Each comment should start upper case and end with an ".".
-
-### Usings Guideline
+### Usings
 
 The using namespace list should order like this.
 
