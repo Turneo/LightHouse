@@ -1,4 +1,4 @@
-# LightHouse (Testing)
+# Testing (LightHouse)
 
 The tests in LightHouse are written when possible in a portable class library and then for each platform a runner is created which will execute them in the correct environment.
 
