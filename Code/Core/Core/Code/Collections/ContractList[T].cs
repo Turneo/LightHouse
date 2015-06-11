@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
+
+using LightHouse.Core.Bindings;
+using LightHouse.Core.Queries;
 
 namespace LightHouse.Core.Collections
 {
@@ -36,6 +37,14 @@ namespace LightHouse.Core.Collections
         }
 
         /// <summary>
+        /// Initializes a new instance of ContractList using a new DataList.
+        /// </summary>
+        public ContractList()
+        {
+            this.dataList = new DataList<DataObject>();
+        }
+
+        /// <summary>
         /// Initializes a new instance of ContractList using a provided DataList.
         /// </summary>
         /// <param name="dataList">DataList to be used for constructing the ContractList.</param>
@@ -45,11 +54,21 @@ namespace LightHouse.Core.Collections
         }
 
         /// <summary>
-        /// Initializes a new instance of ContractList using a new DataList.
+        /// Initializes a new instance of ContractList based on provided query.
         /// </summary>
-        public ContractList()
+        /// <param name="query">IQuery of T that provides necessary querying information.</param>
+        public ContractList(IQuery query)
         {
-            this.dataList = new DataList<DataObject>();
+            this.dataList = new DataList<DataObject>(query);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of ContractList based on the provided ObjectPath.
+        /// </summary>
+        /// <param name="objectPath">ObjectPath that provides required binding information.</param>
+        public ContractList(ObjectPath objectPath)            
+        {
+            this.dataList = new DataList<DataObject>(objectPath);
         }
 
         /// <summary>
@@ -337,7 +356,7 @@ namespace LightHouse.Core.Collections
         /// <returns>A ContractList of the specified type.</returns>
         public IContractList<U> ToContractList<U>() where U : IContractObject
         {
-            return new ContractList<U>(dataList);
+            return new ContractList<U>(this.dataList);
         }
 
         /// <summary>
@@ -462,6 +481,16 @@ namespace LightHouse.Core.Collections
             {
                 dataList[index] = ((IContractObject)(Object)value).ConvertTo<IDataObject>();
             }
+        }
+
+        /// <summary>
+        /// Converts the current ContractList to a new SurrogateList of U which must be inherited from ISurrogateObject.
+        /// </summary>
+        /// <typeparam name="U">Type of the new SurrogateList.</typeparam>
+        /// <returns>A SurrogateList of the specified type of surrogate objects.</returns>
+        public ISurrogateList<U> ToSurrogateList<U>() where U : ISurrogateObject
+        {
+            return this.dataList.ToSurrogateList<U>();
         }
     }
 }

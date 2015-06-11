@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LightHouse.Core.Bindings;
+using LightHouse.Core.Queries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,7 @@ namespace LightHouse.Core.Collections
     public abstract class QueryableList<T> : IQueryableList<T>
     {
         /// <summary>
-        /// Paths to be included in the QueryableList.
+        /// Paths to be included in the returned objects of the QueryableList.
         /// </summary>
         protected IList<String> paths = new List<String>();
 
@@ -26,10 +28,7 @@ namespace LightHouse.Core.Collections
         /// <summary>
         /// Initializes a new instance of a QueryableList.
         /// </summary>
-        public QueryableList()
-        {
-            
-        }
+        public QueryableList() { }        
 
         /// <summary>
         /// Gets the type of the element(s) that are returned when the expression tree associated with this instance of the queryable list is executed.

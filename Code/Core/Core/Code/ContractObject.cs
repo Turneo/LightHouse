@@ -26,6 +26,7 @@ namespace LightHouse.Core
             add            
             {
                 IDataObject dataObject = ConvertTo<IDataObject>();
+
                 if (!dataObject.ContractPropertyChanging.ContainsHandler<PropertyChangingEventArgs>(value))
                 {
                     dataObject.ContractPropertyChanging += value.MakeWeak<PropertyChangingEventArgs>(eventHandler => { dataObject.ContractPropertyChanging -= eventHandler; });

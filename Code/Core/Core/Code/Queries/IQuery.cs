@@ -16,6 +16,6 @@ namespace LightHouse.Core.Queries
         /// </summary>
         /// <typeparam name="U">New type of the query.</typeparam>
         /// <returns>Modified query object.</returns>
-        IQuery<U> As<U>();
+        IQuery<U> As<U>();        
     }
 }

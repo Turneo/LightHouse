@@ -103,6 +103,7 @@
     <Compile Include="..\..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Bindings\ObjectPath.cs" />
     <Compile Include="Caching\DataCache.cs" />
     <Compile Include="Caching\DataRegion.cs" />
     <Compile Include="Collections\ContractEnumerator.cs" />

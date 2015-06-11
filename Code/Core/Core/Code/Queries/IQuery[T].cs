@@ -32,5 +32,12 @@ namespace LightHouse.Core.Queries
         /// <param name="paths">Paths to be included in the current query.</param>
         /// <returns>Modified query object.</returns>
         IQuery<T> Include(ICollection<String> paths);
+
+        /// <summary>
+        /// REVIEW: Converts the Query to an IQueryableList of the same type.
+        /// </summary>
+        /// <typeparam name="T">Type of the new IQueryableList. Must be the same as the IQuery</typeparam>
+        /// <returns>IQueryableList of Type T</returns>
+        LightHouse.Core.Collections.IQueryableList<T> ToQueryableList<T>();
     }
 }

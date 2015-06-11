@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using LightHouse.Core.Bindings;
+using LightHouse.Core.Queries;
+
 namespace LightHouse.Core.Collections
 {
     /// <summary>
@@ -12,6 +15,16 @@ namespace LightHouse.Core.Collections
     /// <typeparam name="T">Type of the ContractObjects included in the collection.</typeparam>
     public class SurrogateList<T> : QueryableList<T>, ISurrogateList<T>
     {
+        /// <summary>
+        /// REVIEW: Query that the SurrogateList is bound to
+        /// </summary>
+        protected IQuery query;
+
+        /// <summary>
+        /// REVIEW: ObjectPath that the SurrogateList is bound to
+        /// </summary>
+        protected ObjectPath objectPath;
+
         /// <summary>
         /// Internal list containing the SurrogateObjects.
         /// </summary>
@@ -25,11 +38,34 @@ namespace LightHouse.Core.Collections
         }
 
         /// <summary>
+        /// Initializes a new instance of a SurrogateList based on the provided query.
+        /// </summary>
+        /// <param name="query">IQuery with the required querying information.</param>
+        public SurrogateList(IQuery query)
+        {
+            this.query = query;            
+        }
+
+        /// <summary>
+        /// Initializes a new instance of a SurrogateList based on the provided ObjectPath.
+        /// </summary>
+        /// <param name="objectPath">ObjectPath with the required binding information.</param>
+        public SurrogateList(ObjectPath objectPath)            
+        {
+            this.objectPath = objectPath;
+        }
+
+        /// <summary>
         /// Returns an enumerator that iterates through the collection. 
         /// </summary>
         /// <returns>A enumerator that can be used to iterate through the collection.</returns>
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
+            if (this.query != null)
+            {
+                return GetQueryable().GetEnumerator();
+            }
+
             return dataList.GetEnumerator();
         }
 
@@ -39,6 +75,11 @@ namespace LightHouse.Core.Collections
         /// <returns>A enumerator that can be used to iterate through the collection.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
+            if (this.query != null)
+            {
+                return GetQueryable().GetEnumerator();
+            }
+
             return dataList.GetEnumerator();
         }
 
@@ -79,8 +120,13 @@ namespace LightHouse.Core.Collections
         /// Returns the Queryable for the current collection.
         /// </summary>
         /// <returns>Queryable for the current collection.</returns>
-        private IQueryable GetQueryable()
+        private IQueryable<T> GetQueryable()
         {
+            if (this.query != null)
+            {
+                return (IQueryable<T>)this.query;
+            }
+
             IList<T> list = new List<T>();
 
             if ((dataList != null) && (dataList.Count > 0))

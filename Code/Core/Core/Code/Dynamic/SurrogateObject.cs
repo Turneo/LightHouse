@@ -85,7 +85,16 @@ namespace LightHouse.Core.Dynamic
         /// <param name="value">Value of the property.</param>
         public void SetProperty(String name, Object value)
         {
-            dynamicCache.Add(name, value, "Properties");
+            switch (name)
+            {
+                case "ID":
+                    this.ID = value.ToString();
+                    break;
+                default:
+                    dynamicCache.Add(name, value, "Properties");
+                    break;
+            }
+
         }
 
         /// <summary>
@@ -96,7 +105,13 @@ namespace LightHouse.Core.Dynamic
         /// <returns>Value of the property.</returns>
         public T GetProperty<T>(String name)
         {
-            return dynamicCache.Get<T>(name, "Properties");
+            switch (name)
+            {
+                case "ID":
+                    return (T)(Object)this.ID;                    
+                default:
+                    return dynamicCache.Get<T>(name, "Properties");                    
+            }
         }
 
         /// <summary>
@@ -119,7 +134,7 @@ namespace LightHouse.Core.Dynamic
         /// <returns>Converted object of type T.</returns>
         public T ConvertTo<T>(IList<string> paths = null)
         {
-            throw new NotImplementedException();
+            return LightHouse.Elite.Core.Converter.ConvertTo<T>(this, paths);            
         }
 
         /// <summary>

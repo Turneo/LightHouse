@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LightHouse.Core.Bindings;
+using LightHouse.Core.Queries;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -14,6 +16,16 @@ namespace LightHouse.Core.Collections
     public class DataList<T> : QueryableList<T>, IDataList<T>
     {
         /// <summary>
+        /// REVIEW: Query that the DataList is bound to
+        /// </summary>
+        protected IQuery query;
+
+        /// <summary>
+        /// REVIEW: ObjectPath that the DataList is bound to
+        /// </summary>
+        protected ObjectPath objectPath;
+
+        /// <summary>
         /// Internal list containing the DataObjects.
         /// </summary>
         private IList<T> dataList = new List<T>();
@@ -28,6 +40,24 @@ namespace LightHouse.Core.Collections
         /// </summary>
         public DataList()
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of a DataList based on the provided query.
+        /// </summary>
+        /// <param name="query">Query object containing required querying information.</param>
+        public DataList(IQuery query)
+        {
+            this.query = query;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of a DataList based on the provided ObjectPath.
+        /// </summary>
+        /// <param name="objectPath">ObjectPath containing required binding information.</param>
+        public DataList(ObjectPath objectPath)
+        {
+            this.objectPath = objectPath;
         }
 
         /// <summary>
@@ -146,6 +176,11 @@ namespace LightHouse.Core.Collections
         {
             get 
             { 
+                if (this.query != null)
+                {
+                    return  GetQueryable().Count();
+                }
+
                 return dataList.Count(); 
             }
         }
@@ -230,8 +265,7 @@ namespace LightHouse.Core.Collections
         /// <param name="value">DataObject to be inserted.</param>
         public void Insert(int index, object value)
         {
-            dataList.Insert(index, (T)value);
-    
+            dataList.Insert(index, (T)value);    
         }
 
         /// <summary>
@@ -317,7 +351,7 @@ namespace LightHouse.Core.Collections
         /// <returns>A Query for the collection.</returns>
         public IQueryable<T> Query()
         {
-            throw new NotImplementedException();
+            return (IQueryable<T>)this.query;            
         }
 
         /// <summary>
@@ -326,11 +360,21 @@ namespace LightHouse.Core.Collections
         /// <returns>A DataEnumerator for the collection.</returns>
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
+            if (query != null)
+            {
+                return  GetQueryable().GetEnumerator();
+            }
+
             return new DataEnumerator<T>(this);
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
+            if (query != null)
+            {
+                return  GetQueryable().GetEnumerator();
+            }
+
             return new DataEnumerator<T>(this);
         }
 
@@ -373,6 +417,11 @@ namespace LightHouse.Core.Collections
         /// <returns>Queryable for the current collection.</returns>
         private IQueryable<T> GetQueryable()
         {
+            if (this.query != null)
+            {
+                return (IQueryable<T>)this.query;
+            }
+
             IList<T> list = new List<T>();
 
             if ((dataList != null) && (dataList.Count > 0))
@@ -384,6 +433,16 @@ namespace LightHouse.Core.Collections
             }
 
             return list.AsQueryable<T>();
+        }
+
+        /// <summary>
+        /// Converts the current ContractList to a new SurrogateList of U which must be inherited from ISurrogateObject.
+        /// </summary>
+        /// <typeparam name="U">Type of the new SurrogateList.</typeparam>
+        /// <returns>A SurrogateList of the specified type of surrogate objects.</returns>
+        public ISurrogateList<U> ToSurrogateList<U>() where U : ISurrogateObject
+        {
+            return new SurrogateList<U>(this.query.As<U>());
         }
     }
 }

@@ -29,5 +29,12 @@ namespace LightHouse.Core.Collections
         /// Releases the reader lock that has been used for thread-safe reading operations on the collection.
         /// </summary>
         void ExitReadLock();
+
+        /// <summary>
+        /// REVIEW: Converts the current DataList to a new SurroagteList of ISurrogateObject (or inherited).
+        /// </summary>
+        /// <typeparam name="U">Type of the new SurrogateList.</typeparam>
+        /// <returns>A SurrogateList of the specified type of surrogate objects.</returns>
+        ISurrogateList<U> ToSurrogateList<U>() where U : ISurrogateObject;
     }
 }
