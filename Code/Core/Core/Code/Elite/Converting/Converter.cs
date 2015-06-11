@@ -131,7 +131,11 @@ namespace LightHouse.Core.Elite.Converting
             }
             else
             {
-                contractObject = LightHouse.Elite.Core.Builder.GetContractObject(typeof(T), true);
+                contractObject = LightHouse.Elite.Core.Builder.GetContractObject(typeof(T), true);                
+            }
+
+            if (contractObject != null)
+            {
                 contractObject.ID = surrogateObject.ID;
             }
 

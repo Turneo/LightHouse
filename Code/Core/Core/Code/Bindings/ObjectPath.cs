@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LightHouse.Core.Bindings
 {
     public class ObjectPath
-    {        
+    {
         /// <summary>
         /// Source of the binding as IObject.
         /// </summary>

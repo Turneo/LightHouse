@@ -16,12 +16,12 @@ namespace LightHouse.Core.Collections
     public class SurrogateList<T> : QueryableList<T>, ISurrogateList<T>
     {
         /// <summary>
-        /// REVIEW: Query that the SurrogateList is bound to
+        /// Query that is used for executing the SurrogateList as queryable.
         /// </summary>
         protected IQuery query;
 
         /// <summary>
-        /// REVIEW: ObjectPath that the SurrogateList is bound to
+        /// ObjectPath that the SurrogateList is bound to.
         /// </summary>
         protected ObjectPath objectPath;
 
