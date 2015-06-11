@@ -16,12 +16,12 @@ namespace LightHouse.Core.Collections
     public class DataList<T> : QueryableList<T>, IDataList<T>
     {
         /// <summary>
-        /// REVIEW: Query that the DataList is bound to
+        /// Query that is used for executing the DataList as queryable.
         /// </summary>
         protected IQuery query;
 
         /// <summary>
-        /// REVIEW: ObjectPath that the DataList is bound to
+        /// ObjectPath that the DataList is bound to.
         /// </summary>
         protected ObjectPath objectPath;
 
