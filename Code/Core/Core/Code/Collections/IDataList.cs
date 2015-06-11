@@ -31,7 +31,7 @@ namespace LightHouse.Core.Collections
         void ExitReadLock();
 
         /// <summary>
-        /// REVIEW: Converts the current DataList to a new SurroagteList of ISurrogateObject (or inherited).
+        /// Converts the current DataList to a new SurroagteList of the provided type (inherited from ISurrogateObject).
         /// </summary>
         /// <typeparam name="U">Type of the new SurrogateList.</typeparam>
         /// <returns>A SurrogateList of the specified type of surrogate objects.</returns>

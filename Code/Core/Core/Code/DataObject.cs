@@ -661,9 +661,13 @@ namespace LightHouse.Core
                 {
                     returnValue = (T)(Object)Convert.ToInt32((Object)propertyValue);
                 }
-                else if(typeof(T) == typeof(Int64))
+                else if((typeof(T) == typeof(Int64)) || (typeof(T) == typeof(long)))
                 {
                     returnValue = (T)(Object)Convert.ToInt64((Object)propertyValue);
+                }
+                else if (typeof(T) == typeof(Decimal))
+                {
+                    returnValue = (T)(Object)Convert.ToDecimal((Object)propertyValue);
                 }
                 else
                 {

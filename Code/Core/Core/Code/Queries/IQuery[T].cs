@@ -34,7 +34,7 @@ namespace LightHouse.Core.Queries
         IQuery<T> Include(ICollection<String> paths);
 
         /// <summary>
-        /// REVIEW: Converts the Query to an IQueryableList of the same type.
+        /// Converts the Query to an IQueryableList of the same type.
         /// </summary>
         /// <typeparam name="T">Type of the new IQueryableList. Must be the same as the IQuery</typeparam>
         /// <returns>IQueryableList of Type T</returns>

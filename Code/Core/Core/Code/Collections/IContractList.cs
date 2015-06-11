@@ -50,7 +50,7 @@ namespace LightHouse.Core.Collections
         IContractList<U> ToContractList<U>() where U : IContractObject;
 
         /// <summary>
-        /// REVIEW: Converts the current ContractList to a new SurroagteList of ISurrogateObject (or inherited).
+        /// Converts the current ContractList to a new SurroagteList of the provided type (inherited from ISurrogateObject).
         /// </summary>
         /// <typeparam name="U">Type of the new SurrogateList.</typeparam>
         /// <returns>A SurrogateList of the specified type of surrogate objects.</returns>
