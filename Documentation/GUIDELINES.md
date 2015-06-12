@@ -4,7 +4,7 @@
 ### Comments
 
 - Each Class, Property, Field and Method requires a comment.
-- Each comment should start upper case and end with an ".".
+- Each comment (Summary, Parameters, Results) should start upper case and end with an ".".
 
 ### Usings
 
