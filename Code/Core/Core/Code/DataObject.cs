@@ -81,7 +81,7 @@ namespace LightHouse.Core
 
         /// <summary>
         /// Returns the DataObjectProxyInformation containing the current proxy states
-        /// </summary>
+        /// /// </summary>
         /// <returns>DataObjectProxyInformation containing the current proxy states</returns>
         private DataObjectProxyInformation GetProxyInformation()
         {
