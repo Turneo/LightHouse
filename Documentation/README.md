@@ -53,4 +53,4 @@ And the following providers: AAD (Web & Desktop), AD (Desktop).
 
 - Embedded with xUnit Support (Selected to be able to run the test on portable devices).
 
-LightHouse is a registered trademark of Turneo AG.
+LightHouse is a registered trademark of Turneo AG (www.turneo.com).
