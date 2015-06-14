@@ -22,4 +22,4 @@ Several NuGet packages are already available. More will be published in the comi
 * https://www.nuget.org/packages/LightHouse.Storage.Embedded/
 * https://www.nuget.org/packages/LightHouse.Storage.Repository.Memory/
 
-LightHouse is a registered trademark of Turneo AG.
+LightHouse is a registered trademark of Turneo AG (www.turneo.com).
