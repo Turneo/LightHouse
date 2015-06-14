@@ -34,3 +34,5 @@ Here an example:
 ```
 
 The TestConfiguration keeps a singleton reference to the Merger class, which in the portable class library contains all the test that can be executed.
+
+LightHouse is a registered trademark of Turneo AG (www.turneo.com).
