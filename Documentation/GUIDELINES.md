@@ -38,3 +38,5 @@ using LightHouse.Presentation.List;
 using LightHouse.Presentation.Web.App.Controls;
 using LightHouse.Storage.Linq.Extensions;
 ```
+
+LightHouse is a registered trademark of Turneo AG (www.turneo.com).
