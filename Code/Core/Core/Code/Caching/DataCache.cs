@@ -12,13 +12,18 @@ namespace LightHouse.Core.Caching
     {
         private IDictionary<String, DataRegion> regions = new Dictionary<String, DataRegion>();
         /// <summary>
-        /// Dictionary holding all the regions of the cache.
+        /// Dictionary holding all the regions of the cache. 
         /// </summary>
         public IDictionary<String, DataRegion> Regions 
         { 
             get
             {
                 return regions;
+            }
+            set
+            {
+                //TODO: setter should be eventually removed.
+                regions = value;
             }
         }
 
