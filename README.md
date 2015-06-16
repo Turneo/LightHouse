@@ -8,8 +8,8 @@ You will find in every LightHouse component a Code, Documentation and Testing fo
 
 More information about LightHouse can be found in the following readme and wiki:
 
-[README.md](https://github.com/Turneo/LightHouse/blob/master/Documentation/README.md)
-[LightHouse Wiki](https://github.com/Turneo/LightHouse/wiki)
+* [README.md](https://github.com/Turneo/LightHouse/blob/master/Documentation/README.md)
+* [LightHouse Wiki](https://github.com/Turneo/LightHouse/wiki)
 
 ## License
 
