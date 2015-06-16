@@ -8,10 +8,22 @@ You will find in every LightHouse component a Code, Documentation and Testing fo
 
 More information about LightHouse can be found in the following readme and wiki:
 
-https://github.com/Turneo/LightHouse/blob/master/Documentation/README.md
-https://github.com/Turneo/LightHouse/wiki
+[README.md](https://github.com/Turneo/LightHouse/blob/master/Documentation/README.md)
+[LightHouse Wiki](https://github.com/Turneo/LightHouse/wiki)
 
-LightHouse is dual licensed and as such can be used for Open Source projects for free. Contact us if you are interested in a commercial license.
+## License
+
+LightHouse is dual licensed and as such can be used for open source projects for free. Contact us if you are interested in a commercial license.
+
+## Contributing
+
+We still need to specify the rules for contributing and when ready will explain them in detail under [CONTRIBUTING.md](https://github.com/Turneo/LightHouse/blob/master/CONTRIBUTING.md).
+
+## Contributors
+
+The full list of contributors can found in [CONTRIBUTORS.md](https://github.com/Turneo/LightHouse/blob/master/CONTRIBUTORS.md).
+
+## NuGet
 
 Several NuGet packages are already available. More will be published in the coming months:
 
