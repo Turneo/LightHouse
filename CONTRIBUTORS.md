@@ -12,6 +12,6 @@ These people (arranged alphabetically) have contributed to LightHouse in many wa
 
 The following StackOverflow users have unwillingly helped in the development of LightHouse by answering our questions in StackOverflow:
 
-- [http://stackoverflow.com/users/613130/xanatos](xanatos)
+- [xanatos](http://stackoverflow.com/users/613130/xanatos)
 
 LightHouse is a registered trademark of Turneo AG (www.turneo.com).
