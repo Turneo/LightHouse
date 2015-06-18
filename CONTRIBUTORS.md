@@ -5,6 +5,7 @@ These people (arranged alphabetically) have contributed to LightHouse in many wa
 - Abdullah Ali
 - Chalarat Mahapet
 - Kieran Willis
+- Klaus Stefan Gerber
 - Luca Mühlheim
 - Pattamon Thamsukati
 - Pongpet Mahapet
