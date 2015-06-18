@@ -86,7 +86,7 @@ namespace LightHouse.Core.Collections
         /// <param name="item">ContractObject to be added.</param>
         public void Add(T item)
         {
-            dataList.Add(((IContractObject)(Object)item).ConvertTo<IDataObject>());            
+            dataList.Add(((IContractObject)(Object)item).As<IDataObject>());            
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace LightHouse.Core.Collections
         /// <param name="contractObject">ContractObject to be added.</param>
         public void Add(IContractObject contractObject)
         {
-            dataList.Add(contractObject.ConvertTo<IDataObject>());
+            dataList.Add(contractObject.As<IDataObject>());
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace LightHouse.Core.Collections
         {
             foreach (T item in items)
             {
-                dataList.Add(((IContractObject)(Object)item).ConvertTo<IDataObject>());
+                dataList.Add(((IContractObject)(Object)item).As<IDataObject>());
             }
         }
 
@@ -117,7 +117,7 @@ namespace LightHouse.Core.Collections
         /// <returns>Index of the ContractObject within the collection.</returns>
         public int IndexOf(T item)
         {
-            return dataList.IndexOf(((IContractObject)(Object)item).ConvertTo<IDataObject>());
+            return dataList.IndexOf(((IContractObject)(Object)item).As<IDataObject>());
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace LightHouse.Core.Collections
         /// <param name="item">ContractObject to be inserted.</param>
         public void Insert(int index, T item)
         {
-            dataList.Insert(index, ((IContractObject)(Object)item).ConvertTo<IDataObject>());
+            dataList.Insert(index, ((IContractObject)(Object)item).As<IDataObject>());
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace LightHouse.Core.Collections
         /// <returns>True if the ContractObject is found in this collection; otherwise false.</returns>
         public bool Contains(T item)
         {
-            return dataList.Contains(((IContractObject)(object)item).ConvertTo<IDataObject>());
+            return dataList.Contains(((IContractObject)(object)item).As<IDataObject>());
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace LightHouse.Core.Collections
         /// <returns>True if the ContractObject was removed successfully; otherwise false.</returns>
         public bool Remove(T item)
         {
-            dataList.Remove(((IContractObject)(Object)item).ConvertTo<IDataObject>());
+            dataList.Remove(((IContractObject)(Object)item).As<IDataObject>());
 
             return true;
         }
@@ -226,11 +226,11 @@ namespace LightHouse.Core.Collections
                 }
                 else if (typeof(IContractObject).GetTypeInfo().IsAssignableFrom(value.GetType().GetTypeInfo()))
                 {
-                    dataList.Add(((IContractObject)value).ConvertTo<IDataObject>());
+                    dataList.Add(((IContractObject)value).As<IDataObject>());
                 }
                 else if (typeof(ISurrogateObject).GetTypeInfo().IsAssignableFrom(value.GetType().GetTypeInfo()))
                 {
-                    dataList.Add(((ISurrogateObject)value).ConvertTo<IDataObject>());
+                    dataList.Add(((ISurrogateObject)value).As<IDataObject>());
                 }
             } 
             
@@ -247,7 +247,7 @@ namespace LightHouse.Core.Collections
             if ((value != null) && (value is IContractObject))
             {
                 IContractObject item = value as IContractObject;
-                return dataList.Contains(item.ConvertTo<IDataObject>());
+                return dataList.Contains(item.As<IDataObject>());
             }
 
             return false;
@@ -263,7 +263,7 @@ namespace LightHouse.Core.Collections
             if ((value != null) && (value is IContractObject))
             {
                 IContractObject item = value as IContractObject;
-                return dataList.IndexOf(item.ConvertTo<IDataObject>());
+                return dataList.IndexOf(item.As<IDataObject>());
             }
 
             return -1;
@@ -279,7 +279,7 @@ namespace LightHouse.Core.Collections
             if ((value != null) && (value is IContractObject))
             {
                 IContractObject item = value as IContractObject;
-                dataList.Insert(index, item.ConvertTo<IDataObject>());
+                dataList.Insert(index, item.As<IDataObject>());
             }
         }
 
@@ -303,7 +303,7 @@ namespace LightHouse.Core.Collections
             if ((value != null) && (value is IContractObject))
             {
                 IContractObject item = value as IContractObject;
-                dataList.Remove(item.ConvertTo<IDataObject>());
+                dataList.Remove(item.As<IDataObject>());
             }         
         }
 
@@ -441,7 +441,7 @@ namespace LightHouse.Core.Collections
             {
                 foreach(IDataObject item in dataList)
                 {
-                    list.Add(item.ConvertTo<T>());
+                    list.Add(item.As<T>());
                 }
             }
 
@@ -463,7 +463,7 @@ namespace LightHouse.Core.Collections
         /// <param name="value">ContractObject to be removed.</param>
         public void Remove(object value)
         {
-            dataList.Remove(((IContractObject)(Object)value).ConvertTo<IDataObject>());
+            dataList.Remove(((IContractObject)(Object)value).As<IDataObject>());
         }
 
         /// <summary>
@@ -479,7 +479,7 @@ namespace LightHouse.Core.Collections
             }
             set
             {
-                dataList[index] = ((IContractObject)(Object)value).ConvertTo<IDataObject>();
+                dataList[index] = ((IContractObject)(Object)value).As<IDataObject>();
             }
         }
 

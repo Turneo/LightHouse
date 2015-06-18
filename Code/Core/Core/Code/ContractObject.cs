@@ -25,12 +25,12 @@ namespace LightHouse.Core
         {
             add            
             {
-                IDataObject dataObject = ConvertTo<IDataObject>();
+                //IDataObject dataObject = As<IDataObject>();
 
-                if (!dataObject.ContractPropertyChanging.ContainsHandler<PropertyChangingEventArgs>(value))
-                {
-                    dataObject.ContractPropertyChanging += value.MakeWeak<PropertyChangingEventArgs>(eventHandler => { dataObject.ContractPropertyChanging -= eventHandler; });
-                }
+                //if (!dataObject.ContractPropertyChanging.ContainsHandler<PropertyChangingEventArgs>(value))
+                //{
+                //    dataObject.ContractPropertyChanging += value.MakeWeak<PropertyChangingEventArgs>(eventHandler => { dataObject.ContractPropertyChanging -= eventHandler; });
+                //}
             }
             remove
             {
@@ -45,12 +45,12 @@ namespace LightHouse.Core
         {
             add
             {
-                IDataObject dataObject = ConvertTo<IDataObject>();
+                //IDataObject dataObject = As<IDataObject>();
 
-                if (!dataObject.ContractPropertyChanged.ContainsHandler<PropertyChangedEventArgs>(value))
-                {
-                    dataObject.ContractPropertyChanged += value.MakeWeak<PropertyChangedEventArgs>(eventHandler => { dataObject.ContractPropertyChanged -= eventHandler; });
-                }
+                //if (!dataObject.ContractPropertyChanged.ContainsHandler<PropertyChangedEventArgs>(value))
+                //{
+                //    dataObject.ContractPropertyChanged += value.MakeWeak<PropertyChangedEventArgs>(eventHandler => { dataObject.ContractPropertyChanged -= eventHandler; });
+                //}
             }
             remove
             {
@@ -120,7 +120,7 @@ namespace LightHouse.Core
         /// <typeparam name="T">Type of the requested object.</typeparam>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        public T ConvertTo<T>(IList<String> paths = null)
+        public virtual T As<T>(IList<String> paths = null)
         {
             if(typeof(IDataObject).GetTypeInfo().IsAssignableFrom(typeof(T).GetTypeInfo()))
             {
@@ -132,7 +132,7 @@ namespace LightHouse.Core
                 {
                     if (contractObject != null)
                     {
-                        return contractObject.ConvertTo<T>();
+                        return contractObject.As<T>();
                     }
                 }
             }
@@ -150,7 +150,7 @@ namespace LightHouse.Core
         /// <param name="name">Name of the property that is changing.</param>
         protected virtual void OnPropertyChanging(String name, Object newValue = null, Object oldValue = null)
         {
-            EventHandler<PropertyChangingEventArgs> handler = ConvertTo<IDataObject>().ContractPropertyChanging;
+            EventHandler<PropertyChangingEventArgs> handler = As<IDataObject>().ContractPropertyChanging;
 
             if (handler != null)
             {
@@ -164,7 +164,7 @@ namespace LightHouse.Core
         /// <param name="name">Name of the property that has changed.</param>
         protected virtual void OnPropertyChanged(String name)
         {
-            EventHandler<PropertyChangedEventArgs> handler = ConvertTo<IDataObject>().ContractPropertyChanged;
+            EventHandler<PropertyChangedEventArgs> handler = As<IDataObject>().ContractPropertyChanged;
 
             if (handler != null)
             {
@@ -207,7 +207,7 @@ namespace LightHouse.Core
         /// <param name="value">Value of the property.</param>
         public virtual T GetContractProperty<T>(String property)
         {
-            IDataObject dataObject = ConvertTo<IDataObject>();
+            IDataObject dataObject = As<IDataObject>();
 
             if (dataObject != null)
             {
@@ -229,7 +229,7 @@ namespace LightHouse.Core
         /// <returns>PropertyChangedEventHandler form the DataObject.</returns>
         protected PropertyChangedEventHandler GetContractPropertyChangedEventHandler()
         {
-            IDataObject dataObject = ConvertTo<IDataObject>();
+            IDataObject dataObject = As<IDataObject>();
             PropertyChangedEventHandler eventHandler = default(PropertyChangedEventHandler);
 
             if (dataObject != null)
@@ -260,7 +260,7 @@ namespace LightHouse.Core
         /// <returns>PropertyChangingEventHandler form the DataObject.</returns>
         protected PropertyChangingEventHandler GetContractPropertyChangingEventHandler()
         {
-            IDataObject dataObject = ConvertTo<IDataObject>();
+            IDataObject dataObject = As<IDataObject>();
             PropertyChangingEventHandler eventHandler = default(PropertyChangingEventHandler);
 
             if (dataObject != null)
@@ -292,7 +292,7 @@ namespace LightHouse.Core
         /// <param name="value">Value of the property.</
         public void SetContractProperty(String property, Object value)
         {
-            IDataObject dataObject = ConvertTo<IDataObject>();
+            IDataObject dataObject = As<IDataObject>();
 
             if (dataObject != null)
             {
@@ -311,7 +311,7 @@ namespace LightHouse.Core
         /// <returns>Proxy State of the property (true of false).</returns>
         public Boolean GetProxyState(String property)
         {
-            IDataObject dataObject = ConvertTo<IDataObject>();
+            IDataObject dataObject = As<IDataObject>();
 
             if (dataObject != null)
             {
@@ -328,7 +328,7 @@ namespace LightHouse.Core
         /// <param name="proxy">Proxy state of the property (true of false).</param>
         public void SetProxyState(String property, Boolean proxy)
         {
-            IDataObject dataObject = ConvertTo<IDataObject>();
+            IDataObject dataObject = As<IDataObject>();
 
             if (dataObject != null)
             {
@@ -386,7 +386,7 @@ namespace LightHouse.Core
                 return false;
             }
 
-            return Object.ReferenceEquals(object1.ConvertTo<IDataObject>(), object2.ConvertTo<IDataObject>());
+            return Object.ReferenceEquals(object1.As<IDataObject>(), object2.As<IDataObject>());
         }
 
         /// <summary>

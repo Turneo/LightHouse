@@ -133,7 +133,7 @@ namespace LightHouse.Core.Collections
             {
                 foreach (IDataObject item in dataList)
                 {
-                    list.Add(item.ConvertTo<T>());
+                    list.Add(item.As<T>());
                 }
             }
 

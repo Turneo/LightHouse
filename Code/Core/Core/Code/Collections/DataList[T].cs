@@ -1,11 +1,13 @@
-﻿using LightHouse.Core.Bindings;
-using LightHouse.Core.Queries;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Threading;
+
+using LightHouse.Core.Bindings;
+using LightHouse.Core.Extensions.Linq;
+using LightHouse.Core.Queries;
 
 namespace LightHouse.Core.Collections
 {
@@ -428,7 +430,7 @@ namespace LightHouse.Core.Collections
             {
                 foreach (IDataObject item in dataList)
                 {
-                    list.Add(item.ConvertTo<T>());
+                    list.Add(item.As<T>());
                 }
             }
 
@@ -442,7 +444,7 @@ namespace LightHouse.Core.Collections
         /// <returns>A SurrogateList of the specified type of surrogate objects.</returns>
         public ISurrogateList<U> ToSurrogateList<U>() where U : ISurrogateObject
         {
-            return new SurrogateList<U>(this.query.As<U>());
+            return new SurrogateList<U>((IQuery)this.query.As<U>());
         }
     }
 }

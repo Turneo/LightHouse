@@ -48,6 +48,6 @@ namespace LightHouse.Core
         /// <typeparam name="T">Type of the requested object.</typeparam>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        T ConvertTo<T>(IList<String> paths = null);
+        T As<T>(IList<String> paths = null);
     }
 }

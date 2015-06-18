@@ -189,7 +189,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <returns>Converted ContractObject of type T.</returns>
         private T ConvertContractObjectToContractObject<T>(IContractObject contractObject, IList<string> paths)
         {
-            return LightHouse.Elite.Core.Builder.GetContractObject<T>(contractObject.ConvertTo<IDataObject>());   
+            return LightHouse.Elite.Core.Builder.GetContractObject<T>(contractObject.As<IDataObject>());   
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <returns>Converted DataObject of type T.</returns>
         private T ConvertContractObjectToDataObject<T>(IContractObject contractObject, IList<string> paths)
         {
-            return contractObject.ConvertTo<T>();
+            return contractObject.As<T>();
         }        
         
 

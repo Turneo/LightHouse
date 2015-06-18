@@ -24,12 +24,11 @@ namespace LightHouse.Core.Caching
             get
             {
                 return objects;
-            }   
+            }    
             set
             {
-                //TODO: setter should be eventually removed.
                 objects = value;
-            }
+            }  
         } 
 
         /// <summary>

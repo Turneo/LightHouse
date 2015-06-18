@@ -390,7 +390,7 @@ namespace LightHouse.Core
         /// <typeparam name="T">Type of the requested object.</typeparam>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        public T ConvertTo<T>(IList<string> paths = null)
+        public T As<T>(IList<string> paths = null)
         {
             if (typeof(IContractObject).GetTypeInfo().IsAssignableFrom(typeof(T).GetTypeInfo()))
             {
@@ -589,7 +589,7 @@ namespace LightHouse.Core
                 }
                 else if (typeof(ContractObject).GetTypeInfo().IsAssignableFrom(value.GetType().GetTypeInfo()))
                 {
-                    var propertyValue = ((ContractObject)value).ConvertTo<IDataObject>();
+                    var propertyValue = ((ContractObject)value).As<IDataObject>();
                     AddPropertyToCache(propertyName, propertyValue);
                 }
                 else
@@ -654,7 +654,7 @@ namespace LightHouse.Core
                     }
                     else
                     {
-                        returnValue = dataObject.ConvertTo<T>();
+                        returnValue = dataObject.As<T>();
                     }
                 }
                 else if(typeof(T) == typeof(Int32))
