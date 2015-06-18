@@ -140,7 +140,6 @@ namespace LightHouse.Core.Elite.Locating
                     infosLoaded = true;
                 }
             }
-            
         }
 
         /// <summary>
@@ -353,14 +352,14 @@ namespace LightHouse.Core.Elite.Locating
 
                 foreach (Exception loaderException in reflectionTypeLoadException.LoaderExceptions)
                 {
-                    stringBuilder.AppendLine(String.Format("Loading {0} failed. Missing: {1}", assembly.FullName, loaderException.Message));                    
+                    stringBuilder.AppendLine(String.Format("Loading type {0} failed. Loader Exception: {1}.", assembly.FullName, loaderException.Message));                    
                 }             
 
                 Debug.WriteLine(stringBuilder.ToString());                
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Loading Assembly {0} failed. Exception: {1}", assembly.FullName, ex.Message);                
+                Debug.WriteLine("Loading assembly {0} failed. Exception: {1}.", assembly.FullName, ex.Message);                
             }
         }
 

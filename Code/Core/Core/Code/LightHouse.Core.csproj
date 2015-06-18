@@ -112,7 +112,8 @@
     <Compile Include="Attributes\Path.cs" />
     <Compile Include="Dynamic\SurrogateObject.cs" />
     <Compile Include="Elite\Converting\Converter.cs" />
-    <Compile Include="Extensions\WebRequestExtensions.cs" />
+    <Compile Include="Extensions\Linq\IQueryableExtensions.cs" />
+    <Compile Include="Extensions\Net\WebRequestExtensions.cs" />
     <Compile Include="Notifications\EventHandlerExtensions.cs" />
     <Compile Include="Notifications\WeakEventHandler.cs" />
     <Compile Include="IContractObject.cs" />

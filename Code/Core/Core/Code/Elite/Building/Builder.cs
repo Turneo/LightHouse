@@ -51,7 +51,10 @@ namespace LightHouse.Core.Elite.Building
                 }
                 catch(Exception ex)
                 {
-                    Debug.WriteLine(String.Format("Compiling an instance activator throwed an error: {0}", ex.ToString()));
+                    String exceptionMessage = String.Format("Compiling an instance activator for {0} ({1}) throwed an error: {2}", objectType.FullName, definition, ex.ToString());
+
+                    Debug.WriteLine(exceptionMessage);
+                    throw new Exception(exceptionMessage);
                 }
 
                 dataCache.Add(objectType.FullName, instanceActivator, definition);
@@ -72,25 +75,27 @@ namespace LightHouse.Core.Elite.Building
 
             foreach (ConstructorInfo constructorInfo in objectType.GetTypeInfo().DeclaredConstructors)
             {
-                StringBuilder constructorDefinition = new StringBuilder();
-
-                for (int i = 0; i < constructorInfo.GetParameters().Length; i++)
-		        {
-                    if(i > 0)
-                    {
-                        constructorDefinition.Append(", ");		 
-                    }
-                    
-                    constructorDefinition.Append(constructorInfo.GetParameters()[i].ParameterType.FullName);		 
-		        }
-
-                if (definition == constructorDefinition.ToString())
+                if (!constructorInfo.IsStatic)
                 {
-                    foundConstructor = constructorInfo;
+                    StringBuilder constructorDefinition = new StringBuilder();
+
+                    for (int i = 0; i < constructorInfo.GetParameters().Length; i++)
+                    {
+                        if (i > 0)
+                        {
+                            constructorDefinition.Append(", ");
+                        }
+
+                        constructorDefinition.Append(constructorInfo.GetParameters()[i].ParameterType.FullName);
+                    }
+
+                    if (definition == constructorDefinition.ToString())
+                    {
+                        foundConstructor = constructorInfo;
+                    }
                 }
             }
 
-            Type type = foundConstructor.DeclaringType;
             ParameterInfo[] paramsInfo = foundConstructor.GetParameters();
 
             ParameterExpression parameter = Expression.Parameter(typeof(object[]), "args");
@@ -122,7 +127,7 @@ namespace LightHouse.Core.Elite.Building
         public IContractList<T> GetContractList<T>()
         {
             IContractList<T> contractList = (IContractList<T>)GetInstanceActivator(typeof(ContractList<>).MakeGenericType(typeof(T)), "")();
-            LightHouse.Elite.Core.Notifier.Notify(contractList, new ObjectCreatedEventArgs());
+            //LightHouse.Elite.Core.Notifier.Notify(contractList, new ObjectCreatedEventArgs());
 
             return contractList;
         }
@@ -161,7 +166,7 @@ namespace LightHouse.Core.Elite.Building
             }
             else
             {
-                throw new Exception(String.Format("Couldn't create DataObject for ContractObject {0}", contractObject.GetType()));
+                throw new Exception(String.Format("Couldn't create DataObject. No contract information was found for type: {0}.", contractObject.GetType()));
             }
 
             return dataObject;
@@ -232,7 +237,7 @@ namespace LightHouse.Core.Elite.Building
                 return default(T);
             }
 
-            return dataObject.ConvertTo<T>();
+            return dataObject.As<T>();
         }
 
         /// <summary>
@@ -248,7 +253,7 @@ namespace LightHouse.Core.Elite.Building
                 return default(ContractObject);
             }
 
-            MethodInfo method = typeof(IObject).GetTypeInfo().GetDeclaredMethod("ConvertTo");
+            MethodInfo method = typeof(IObject).GetTypeInfo().GetDeclaredMethod("As");
             MethodInfo generic = method.MakeGenericMethod(contractType);
             
             return (IContractObject)generic.Invoke(dataObject, new Object[] { null });
