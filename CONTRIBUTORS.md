@@ -10,6 +10,7 @@ These people (arranged alphabetically) have contributed to LightHouse in many wa
 - Pattamon Thamsukati
 - Pongpet Mahapet
 - Reynold Geiser
+- Tindara Fernandez
 
 The following StackOverflow users have unwillingly helped in the development of LightHouse by answering our questions in StackOverflow:
 
