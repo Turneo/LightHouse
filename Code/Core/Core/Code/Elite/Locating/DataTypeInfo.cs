@@ -32,6 +32,11 @@ namespace LightHouse.Core.Elite.Locating
         public String DynamicBaseType { get; set; }
 
         /// <summary>
+        /// List of property information of this DataObject.
+        /// </summary>
+        public IList<DataPropertyInfo> PropertyInfos { get; set; }
+
+        /// <summary>
         /// List of type information of ContractObjects that are used by this DataObject.
         /// </summary>
         public IList<ContractTypeInfo> ContractTypeInfos { get; set; }

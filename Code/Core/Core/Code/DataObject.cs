@@ -268,7 +268,7 @@ namespace LightHouse.Core
         {
             IList<String> properties = new List<String>();
 
-            foreach(PropertyInfo propertyInfo in LightHouse.Elite.Core.Reflector.GetProperties(GetType()))
+            foreach(System.Reflection.PropertyInfo propertyInfo in LightHouse.Elite.Core.Reflector.GetProperties(GetType()))
             {
                 properties.Add(propertyInfo.Name);
             }
@@ -530,15 +530,7 @@ namespace LightHouse.Core
         /// <returns>State of the provided property.</returns>
         public virtual Boolean GetProxyState(String property)
         {
-            PropertyInfo propertyInfo = null;
-            try
-            {
-                propertyInfo = this.GetProxyInformation().GetType().GetRuntimeProperty(property);
-            }
-            catch (AmbiguousMatchException)
-            {
-                propertyInfo = this.GetProxyInformation().GetType().GetRuntimeProperties().Where(p => p.Name == property).FirstOrDefault();
-            }
+            System.Reflection.PropertyInfo propertyInfo = this.GetProxyInformation().GetType().GetRuntimeProperties().Where(p => p.Name == property).FirstOrDefault();
 
             if (propertyInfo != null)
             {
@@ -557,7 +549,7 @@ namespace LightHouse.Core
         /// <param name="proxy">Proxy state of the property.</param>
         public virtual void SetProxyState(String property, Boolean proxy)
         {
-            PropertyInfo propertyInfo = this.GetProxyInformation().GetType().GetRuntimeProperty(property);
+            System.Reflection.PropertyInfo propertyInfo = this.GetProxyInformation().GetType().GetRuntimeProperty(property);
 
             if (propertyInfo != null)
             {

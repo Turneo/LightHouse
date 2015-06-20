@@ -123,16 +123,48 @@ namespace LightHouse.Core.Elite.Locating
                         }
                     }
 
-                    foreach (KeyValuePair<String, Object> DataTypeInfoValuePair in dataCache.GetObjectsInRegion("DataTypeInfos"))
+                    foreach (KeyValuePair<String, Object> dataTypeInfoValuePair in dataCache.GetObjectsInRegion("DataTypeInfos"))
                     {
-                        DataTypeInfo DataTypeInfo = (DataTypeInfo)DataTypeInfoValuePair.Value;
+                        DataTypeInfo dataTypeInfo = (DataTypeInfo)dataTypeInfoValuePair.Value;
 
-                        if (!String.IsNullOrEmpty(DataTypeInfo.DynamicType))
+                        if ((dataTypeInfo.ContractTypeInfos != null) && (dataTypeInfo.ContractTypeInfos.Count > 0))
                         {
-                            IList<String> childrenTypes = new List<String>();
-                            dataCache.Add(DataTypeInfo.DynamicType, childrenTypes, "DynamicChildrenTypes");
+                            foreach (System.Reflection.PropertyInfo propertyInfo in LightHouse.Elite.Core.Reflector.GetProperties(dataTypeInfo.ContractTypeInfos.First().ContractType))
+                            {
+                                Type propertyType = default(Type);
+                                DataTypeInfo propertyDataTypeInfo = default(DataTypeInfo);
+                                Boolean isList = false;
 
-                            PopulateDynamicChildrenTypes(DataTypeInfo.DynamicType, childrenTypes);
+                                if (typeof(IContractObject).GetTypeInfo().IsAssignableFrom(propertyInfo.PropertyType.GetTypeInfo()))
+                                {
+                                    propertyDataTypeInfo = dataCache.Get<ContractTypeInfo>(propertyInfo.PropertyType.FullName, "ContractTypeInfos").DataTypeInfos.First();
+                                }
+                                else if (typeof(IContractList).GetTypeInfo().IsAssignableFrom(propertyInfo.PropertyType.GetTypeInfo()))
+                                {
+                                    propertyDataTypeInfo = dataCache.Get<ContractTypeInfo>(propertyInfo.PropertyType.GenericTypeArguments[0].FullName, "ContractTypeInfos").DataTypeInfos.First();
+                                    isList = true;
+                                }
+                                else
+                                {
+                                    propertyType = propertyInfo.PropertyType;
+                                }
+
+                                dataTypeInfo.PropertyInfos.Add(new DataPropertyInfo()
+                                {
+                                    Name = propertyInfo.Name,
+                                    PropertyType = propertyType,
+                                    DataTypeInfo = propertyDataTypeInfo,
+                                    IsList = isList
+                                });
+                            }
+                        }
+
+                        if (!String.IsNullOrEmpty(dataTypeInfo.DynamicType))
+                        {
+                            IList<DataTypeInfo> childrenTypes = new List<DataTypeInfo>();
+                            dataCache.Add(dataTypeInfo.DynamicType, childrenTypes, "DynamicChildrenTypes");
+
+                            PopulateDynamicChildrenTypes(dataTypeInfo, childrenTypes);
                         }
                     }
 
@@ -147,18 +179,18 @@ namespace LightHouse.Core.Elite.Locating
         /// </summary>
         /// <param name="dynamicBaseType">Dynamic base types to be analyzed for dynamic children types.</param>
         /// <param name="childrenTypes">Dynamic children types of the provided base type.</param>
-        private void PopulateDynamicChildrenTypes(String dynamicBaseType, IList<String> childrenTypes)
+        private void PopulateDynamicChildrenTypes(DataTypeInfo baseDataTypeInfo, IList<DataTypeInfo> childrenTypes)
         {
             LoadInfos();
 
             foreach(KeyValuePair<String, Object> dataObjectKeyValuePair in dataCache.GetObjectsInRegion("DataTypeInfos"))
             {
-                DataTypeInfo DataTypeInfo = (DataTypeInfo)dataObjectKeyValuePair.Value;
+                DataTypeInfo dataTypeInfo = (DataTypeInfo)dataObjectKeyValuePair.Value;
 
-                if (DataTypeInfo.DynamicBaseType == dynamicBaseType)
+                if (dataTypeInfo.DynamicBaseType == baseDataTypeInfo.DynamicType)
                 {
-                    childrenTypes.Add(DataTypeInfo.DynamicType);
-                    PopulateDynamicChildrenTypes(DataTypeInfo.DynamicType, childrenTypes);
+                    childrenTypes.Add(dataTypeInfo);
+                    PopulateDynamicChildrenTypes(dataTypeInfo, childrenTypes);
                 }
             }
         }
@@ -181,40 +213,41 @@ namespace LightHouse.Core.Elite.Locating
                 searchType = dataType.FullName;
             }
 
-            DataTypeInfo DataTypeInfo = dataCache.Get<DataTypeInfo>(searchType, "DataTypeInfos");
+            DataTypeInfo dataTypeInfo = dataCache.Get<DataTypeInfo>(searchType, "DataTypeInfos");
 
-            if (DataTypeInfo == null)
+            if (dataTypeInfo == null)
             {
-                DataTypeInfo = new DataTypeInfo()
+                dataTypeInfo = new DataTypeInfo()
                 {
                     DataType = dataType,
                     BaseType = baseType,
                     DynamicType = dynamicType,
                     DynamicBaseType = dynamicBaseType,
                     ContractTypeInfos = new List<ContractTypeInfo>(),
+                    PropertyInfos = new List<DataPropertyInfo>(),
                     IsInAssembly = isDataObjectInAssembly
                 };
 
-                dataCache.Add(searchType, DataTypeInfo, "DataTypeInfos");
+                dataCache.Add(searchType, dataTypeInfo, "DataTypeInfos");
             }
 
             if (contractType != null)
             {
-                ContractTypeInfo ContractTypeInfo = dataCache.Get<ContractTypeInfo>(contractType.FullName, "ContractTypeInfos");
+                ContractTypeInfo contractTypeInfo = dataCache.Get<ContractTypeInfo>(contractType.FullName, "ContractTypeInfos");
 
-                if (ContractTypeInfo == null)
+                if (contractTypeInfo == null)
                 {
-                    ContractTypeInfo = new ContractTypeInfo()
+                    contractTypeInfo = new ContractTypeInfo()
                     {
                         ContractType = contractType,
                         IsDataObjectInAssembly = isDataObjectInAssembly,
                         DataTypeInfos = new List<DataTypeInfo>()
                     };
 
-                    ContractTypeInfo.DataTypeInfos.Add(DataTypeInfo);
-                    DataTypeInfo.ContractTypeInfos.Add(ContractTypeInfo);
+                    contractTypeInfo.DataTypeInfos.Add(dataTypeInfo);
+                    dataTypeInfo.ContractTypeInfos.Add(contractTypeInfo);
 
-                    dataCache.Add(contractType.FullName, ContractTypeInfo, "ContractTypeInfos");
+                    dataCache.Add(contractType.FullName, contractTypeInfo, "ContractTypeInfos");
                 }
             }
         }
@@ -287,12 +320,12 @@ namespace LightHouse.Core.Elite.Locating
         /// Gets the dynamic children types of the provided dynamic type.
         /// </summary>
         /// <param name="dynamicType">Dynamic type to be analyzed for children types.</param>
-        /// <returns>List of children types as string.</returns>
-        public IList<String> GetDynamicChildrenTypes(String dynamicType)
+        /// <returns>List of children types as DataTypeInfos.</returns>
+        public IList<DataTypeInfo> GetDynamicChildrenTypes(DataTypeInfo dataTypeInfo)
         {
             LoadInfos();
 
-            return dataCache.Get<IList<String>>(dynamicType, "DynamicChildrenTypes");
+            return dataCache.Get<IList<DataTypeInfo>>(dataTypeInfo.DynamicType, "DynamicChildrenTypes");
         }
 
         /// <summary>
