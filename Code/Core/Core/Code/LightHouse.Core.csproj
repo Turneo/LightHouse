@@ -88,7 +88,6 @@
   <ItemGroup>
     <Reference Include="LightHouse.Bootstrap">
       <HintPath>..\..\..\..\Deployment\Libraries\Current\Portable\Profile78\LightHouse.Bootstrap.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -112,6 +111,12 @@
     <Compile Include="Attributes\Path.cs" />
     <Compile Include="Dynamic\SurrogateObject.cs" />
     <Compile Include="Elite\Converting\Converter.cs" />
+    <Compile Include="Elite\Locating\ContractTypeInfo.cs" />
+    <Compile Include="Elite\Locating\DataPropertyInfo.cs" />
+    <Compile Include="Elite\Locating\DataTypeInfo.cs" />
+    <Compile Include="Elite\Locating\Locator.cs" />
+    <Compile Include="Elite\Locating\PropertyInfo.cs" />
+    <Compile Include="Elite\Locating\TypeInfo.cs" />
     <Compile Include="Extensions\Linq\IQueryableExtensions.cs" />
     <Compile Include="Extensions\Net\WebRequestExtensions.cs" />
     <Compile Include="Notifications\EventHandlerExtensions.cs" />
@@ -142,10 +147,6 @@
     <Compile Include="Elite\Loading\Loader.cs" />
     <Compile Include="Elite\Building\Builder.cs" />
     <Compile Include="Elite\Compiling\Compiler.cs" />
-    <Compile Include="Elite\Locating\TypeInfo.cs" />
-    <Compile Include="Elite\Locating\ContractTypeInfo.cs" />
-    <Compile Include="Elite\Locating\DataTypeInfo.cs" />
-    <Compile Include="Elite\Locating\Locator.cs" />
     <Compile Include="Elite\Merging\MergeExecutor.cs" />
     <Compile Include="Elite\Merging\Merger.cs" />
     <Compile Include="Elite\Notifying\Notifier.cs" />

@@ -219,7 +219,7 @@ namespace LightHouse.Core.Elite.Converting
             ISurrogateObject surrogateObject = (ISurrogateObject)LightHouse.Elite.Core.Builder.Get<T>();
             surrogateObject.ID = convertingObject.ID;
 
-            foreach(PropertyInfo propertyInfo in LightHouse.Elite.Core.Reflector.GetProperties(typeof(T)))
+            foreach(System.Reflection.PropertyInfo propertyInfo in LightHouse.Elite.Core.Reflector.GetProperties(typeof(T)))
             {
                 foreach (Attribute attribute in propertyInfo.GetCustomAttributes(true))
                 {
