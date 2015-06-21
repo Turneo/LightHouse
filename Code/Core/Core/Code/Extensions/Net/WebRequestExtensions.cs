@@ -20,9 +20,7 @@ namespace LightHouse.Core.Extensions.Net
         /// <returns>Task containing the WebResponse as a result.</returns>
         static public Task<WebResponse> GetResponseAsync(this WebRequest source)
         {
-            return Task.Factory.FromAsync(
-                (asyncCallback, state) => source.BeginGetResponse(asyncCallback, state), 
-                (asyncResult) => source.EndGetResponse(asyncResult), null);
+            return Task.Factory.FromAsync(source.BeginGetResponse, source.EndGetResponse, null);
         }
 
         /// <summary>
@@ -32,9 +30,7 @@ namespace LightHouse.Core.Extensions.Net
         /// <returns>Task containing the RequestStream as a result.</returns>
         static public Task<Stream> GetRequestStreamAsync(this WebRequest source)
         {
-            return Task.Factory.FromAsync(
-                (asyncCallback, state) => source.BeginGetRequestStream(asyncCallback, state),
-                (asyncResult) => source.EndGetRequestStream(asyncResult), null);
+            return Task.Factory.FromAsync(source.BeginGetRequestStream, source.EndGetRequestStream, null);
         }
     }
 }
