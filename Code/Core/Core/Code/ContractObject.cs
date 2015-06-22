@@ -120,7 +120,7 @@ namespace LightHouse.Core
         /// <typeparam name="T">Type of the requested object.</typeparam>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        public virtual T As<T>(IList<String> paths = null)
+        public virtual T As<T>(ICollection<String> paths = null)
         {
             if(typeof(IDataObject).GetTypeInfo().IsAssignableFrom(typeof(T).GetTypeInfo()))
             {
