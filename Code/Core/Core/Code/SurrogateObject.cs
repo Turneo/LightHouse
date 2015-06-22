@@ -50,7 +50,7 @@ namespace LightHouse.Core
         /// <typeparam name="T">Type of the requested object.</typeparam>
         /// <param name="paths">Paths to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        public T As<T>(IList<string> paths = null)
+        public T As<T>(ICollection<string> paths = null)
         {
             throw new NotImplementedException();
         }

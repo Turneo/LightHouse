@@ -132,7 +132,7 @@ namespace LightHouse.Core.Dynamic
         /// <typeparam name="T">Type of the requested object.</typeparam>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        public T As<T>(IList<string> paths = null)
+        public T As<T>(ICollection<string> paths = null)
         {
             return LightHouse.Elite.Core.Converter.ConvertTo<T>(this, paths);            
         }

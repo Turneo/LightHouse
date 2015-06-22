@@ -26,7 +26,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="convertingObject">Object that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        public T ConvertTo<T>(IObject convertingObject, IList<String> paths = null)
+        public T ConvertTo<T>(IObject convertingObject, ICollection<String> paths = null)
         {
             Type convertingType = convertingObject.GetType();
 
@@ -86,7 +86,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="surrogateObject">SurrogateObject that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted DataObject of type T.</returns>
-        private T ConvertSurrogateObjectToDataObject<T>(ISurrogateObject surrogateObject, IList<string> paths)
+        private T ConvertSurrogateObjectToDataObject<T>(ISurrogateObject surrogateObject, ICollection<string> paths)
         {
             IDataObject dataObject = LightHouse.Elite.Core.Builder.GetDataObject(typeof(T), true);
             dataObject.ID = surrogateObject.ID;
@@ -100,7 +100,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="surrogateObject">Dynamic SurrogateObject that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted DataObject of type T.</returns>
-        private T ConvertDynamicSurrogateObjectToDataObject<T>(ISurrogateObject surrogateObject, IList<string> paths)
+        private T ConvertDynamicSurrogateObjectToDataObject<T>(ISurrogateObject surrogateObject, ICollection<string> paths)
         {
             IDataObject dataObject = LightHouse.Elite.Core.Builder.GetDataObject(typeof(T), true);
             dataObject.ID = surrogateObject.ID;
@@ -114,7 +114,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="surrogateObject">SurrogateObject that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted ContractObject of type T.</returns>
-        private T ConvertSurrogateObjectToContractObject<T>(ISurrogateObject surrogateObject, IList<string> paths)
+        private T ConvertSurrogateObjectToContractObject<T>(ISurrogateObject surrogateObject, ICollection<string> paths)
         {
             IContractObject contractObject = default(IContractObject);
 
@@ -148,7 +148,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="surrogateObject">Dynamic SurrogateObject that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted ContractObject of type T.</returns>
-        private T ConvertDynamicSurrogateObjectToContractObject<T>(ISurrogateObject surrogateObject, IList<string> paths)
+        private T ConvertDynamicSurrogateObjectToContractObject<T>(ISurrogateObject surrogateObject, ICollection<string> paths)
         {
             IContractObject contractObject = LightHouse.Elite.Core.Builder.GetContractObject(typeof(T), true);
             contractObject.ID = surrogateObject.ID;
@@ -162,7 +162,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="dataObject">DataObject that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted ContractObject of type T.</returns>
-        private T ConvertDataObjectToContractObject<T>(IDataObject dataObject, IList<string> paths)
+        private T ConvertDataObjectToContractObject<T>(IDataObject dataObject, ICollection<string> paths)
         {
             return LightHouse.Elite.Core.Builder.GetContractObject<T>(dataObject);            
         }
@@ -173,7 +173,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="dataObject">DataObject that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted DataObject of type T.</returns>
-        private T ConvertDataObjectToDataObject<T>(IDataObject dataObject, IList<string> paths)
+        private T ConvertDataObjectToDataObject<T>(IDataObject dataObject, ICollection<string> paths)
         {
             IDataObject returnDataObject = LightHouse.Elite.Core.Builder.GetDataObject(typeof(T), true);
             returnDataObject.ID = dataObject.ID;
@@ -187,7 +187,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="contractObject">ContractObject that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted ContractObject of type T.</returns>
-        private T ConvertContractObjectToContractObject<T>(IContractObject contractObject, IList<string> paths)
+        private T ConvertContractObjectToContractObject<T>(IContractObject contractObject, ICollection<string> paths)
         {
             return LightHouse.Elite.Core.Builder.GetContractObject<T>(contractObject.As<IDataObject>());   
         }
@@ -198,7 +198,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="contractObject">ContractObject that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted DataObject of type T.</returns>
-        private T ConvertContractObjectToDataObject<T>(IContractObject contractObject, IList<string> paths)
+        private T ConvertContractObjectToDataObject<T>(IContractObject contractObject, ICollection<string> paths)
         {
             return contractObject.As<T>();
         }        
@@ -211,7 +211,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="convertingObject">Object that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        private T ConvertToSurrogateObject<T>(IObject convertingObject, IList<String> paths = null)
+        private T ConvertToSurrogateObject<T>(IObject convertingObject, ICollection<String> paths = null)
         {
             //TODO: Keep this information in a central place and not retrieve it every time.
             IDictionary<String, String> propertyPaths = new Dictionary<String, String>();
@@ -244,7 +244,7 @@ namespace LightHouse.Core.Elite.Converting
         /// <param name="convertingObject">Object that requires to be converted.</param>
         /// <param name="paths">Paths that need to be included in the conversion.</param>
         /// <returns>Converted object of type T.</returns>
-        private ISurrogateObject ConvertToDynamicSurrogateObject(IObject convertingObject, IList<String> paths = null)
+        private ISurrogateObject ConvertToDynamicSurrogateObject(IObject convertingObject, ICollection<String> paths = null)
         {
             LightHouse.Core.Dynamic.SurrogateObject surrogateObject = new LightHouse.Core.Dynamic.SurrogateObject()
             {

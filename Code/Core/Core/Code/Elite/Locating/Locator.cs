@@ -129,33 +129,49 @@ namespace LightHouse.Core.Elite.Locating
 
                         if ((dataTypeInfo.ContractTypeInfos != null) && (dataTypeInfo.ContractTypeInfos.Count > 0))
                         {
-                            foreach (System.Reflection.PropertyInfo propertyInfo in LightHouse.Elite.Core.Reflector.GetProperties(dataTypeInfo.ContractTypeInfos.First().ContractType))
+                            IEnumerable<System.Reflection.PropertyInfo> properties = LightHouse.Elite.Core.Reflector.GetProperties(dataTypeInfo.ContractTypeInfos.First().ContractType);
+
+                            if (properties != null)
                             {
-                                Type propertyType = default(Type);
-                                DataTypeInfo propertyDataTypeInfo = default(DataTypeInfo);
-                                Boolean isList = false;
+                                foreach (System.Reflection.PropertyInfo propertyInfo in properties)
+                                {
+                                    Type propertyType = default(Type);
+                                    DataTypeInfo propertyDataTypeInfo = default(DataTypeInfo);
+                                    Boolean isList = false;
 
-                                if (typeof(IContractObject).GetTypeInfo().IsAssignableFrom(propertyInfo.PropertyType.GetTypeInfo()))
-                                {
-                                    propertyDataTypeInfo = dataCache.Get<ContractTypeInfo>(propertyInfo.PropertyType.FullName, "ContractTypeInfos").DataTypeInfos.First();
-                                }
-                                else if (typeof(IContractList).GetTypeInfo().IsAssignableFrom(propertyInfo.PropertyType.GetTypeInfo()))
-                                {
-                                    propertyDataTypeInfo = dataCache.Get<ContractTypeInfo>(propertyInfo.PropertyType.GenericTypeArguments[0].FullName, "ContractTypeInfos").DataTypeInfos.First();
-                                    isList = true;
-                                }
-                                else
-                                {
-                                    propertyType = propertyInfo.PropertyType;
-                                }
+                                    if (typeof(IContractObject).GetTypeInfo().IsAssignableFrom(propertyInfo.PropertyType.GetTypeInfo()))
+                                    {
+                                        propertyDataTypeInfo = dataCache.Get<ContractTypeInfo>(propertyInfo.PropertyType.FullName, "ContractTypeInfos").DataTypeInfos.FirstOrDefault();
+                                    }
+                                    else if (typeof(IContractList).GetTypeInfo().IsAssignableFrom(propertyInfo.PropertyType.GetTypeInfo()))
+                                    {
+                                        Type genericType = propertyInfo.PropertyType.GenericTypeArguments.FirstOrDefault();
 
-                                dataTypeInfo.PropertyInfos.Add(new DataPropertyInfo()
-                                {
-                                    Name = propertyInfo.Name,
-                                    PropertyType = propertyType,
-                                    DataTypeInfo = propertyDataTypeInfo,
-                                    IsList = isList
-                                });
+                                        if (genericType != null)
+                                        {
+                                            propertyDataTypeInfo = dataCache.Get<ContractTypeInfo>(genericType.FullName, "ContractTypeInfos").DataTypeInfos.FirstOrDefault();
+                                        }
+
+                                        isList = true;
+                                    }
+                                    else
+                                    {
+                                        propertyType = propertyInfo.PropertyType;
+                                    }
+
+                                    if(dataTypeInfo.PropertyInfos == null)
+                                    {
+                                        dataTypeInfo.PropertyInfos = new List<DataPropertyInfo>();
+                                    }
+
+                                    dataTypeInfo.PropertyInfos.Add(new DataPropertyInfo()
+                                    {
+                                        Name = propertyInfo.Name,
+                                        PropertyType = propertyType,
+                                        DataTypeInfo = propertyDataTypeInfo,
+                                        IsList = isList
+                                    });
+                                }
                             }
                         }
 
