@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace LightHouse.Core.Extensions.Net
         /// <returns>Task containing the WebResponse as a result.</returns>
         static public Task<WebResponse> GetResponseAsync(this WebRequest source)
         {
-            return Task.Factory.FromAsync(source.BeginGetResponse, source.EndGetResponse, null);
+            return Task.Factory.FromAsync<WebResponse>(source.BeginGetResponse, source.EndGetResponse, null);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace LightHouse.Core.Extensions.Net
         /// <returns>Task containing the RequestStream as a result.</returns>
         static public Task<Stream> GetRequestStreamAsync(this WebRequest source)
         {
-            return Task.Factory.FromAsync(source.BeginGetRequestStream, source.EndGetRequestStream, null);
+            return Task.Factory.FromAsync<Stream>(source.BeginGetRequestStream, source.EndGetRequestStream, null);
         }
     }
 }
