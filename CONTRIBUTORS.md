@@ -3,10 +3,15 @@
 These people (arranged alphabetically) have contributed to LightHouse in many ways:
 
 - Abdullah Ali
+- Carlo Somaini
 - Chalarat Mahapet
+- Christian Pohn
+- Joe Gaber
+- Kanok Chaiyapoom
 - Kieran Willis
 - Klaus Stefan Gerber
 - Luca Mühlheim
+- Njål Eide
 - Pattamon Thamsukati
 - Pongpet Mahapet
 - Reynold Geiser
