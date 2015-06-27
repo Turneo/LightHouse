@@ -36,16 +36,13 @@ Here is an example:
 
 The TestConfiguration keeps a singleton reference to the Merger class, which in the portable class library contains all the test that can be executed.
 
-### Creating a Test Project to test the Logic
+### Creating a Test Project for Unit Testing
 
-In Visual Studio create a portable class library (Profile78) project. Then the necessary libraries and references need to be added.
-The class should have the same name as the class that is to be tested. The method should also be named the same as the method that has to be tested.
-To run the tests a test runner is needed.
+In Visual Studio create a portable class library (Profile78) project. Then the necessary libraries and references need to be added. The class should have the same name as the class that is to be tested. The method should also be named the same as the method that has to be tested. To run the tests a test runner is needed.
 
 ### Creating a Test Runner Project
 
-Create a class library project in Visual Studio. Add the correct references, the test logic assembly and the assemblies that are going to be tested. After that, add the xUnit libraries via the nuget package manager.
-The "Fact" attribute marks that this method is a test method, which is a standard xUnit feature.
+Create a class library project in Visual Studio. Add the correct references, the test logic assembly and the assemblies that are going to be tested. After that, add the xUnit libraries via the nuget package manager. The "Fact" attribute marks that this method is a test method, which is a standard xUnit feature.
 
 An example of a test runner class is shown below:
 
@@ -74,9 +71,7 @@ namespace LightHouse.Core.Testing.Runner
 
 In LightHouse it is possible to run the same test logic in different environment settings.
 
-For Example, I would like to run my Unit Test with different storage and execution operators.
-To do that the corresponding operators need to be added to an environment.
-It is possible to set the environment in the constructor of the test runner or create a static class called "TestConfiguration" and implement the static method "SetEnvironment", which can be called in the test runner constructor.
+For Example, I would like to run my Unit Test with different storage and execution operators. To do that the corresponding operators need to be added to an environment. It is possible to set the environment in the constructor of the test runner or create a static class called "TestConfiguration" and implement the static method "SetEnvironment", which can be called in the test runner constructor.
 
 ```
 namespace LightHouse.Core.Testing.Runner
