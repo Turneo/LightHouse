@@ -1,4 +1,4 @@
-# LightHouse
+# Performance (LightHouse)
 
 The following code can improve performance in Web Applications:
 
