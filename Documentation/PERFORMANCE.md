@@ -1,6 +1,6 @@
 # Performance (LightHouse)
 
-The following code can improve performance in Web Applications:
+The following code can improve performance in web applications:
 
 ```
 ViewEngines.Engines.Clear();
