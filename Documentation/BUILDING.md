@@ -32,8 +32,10 @@ Select the build controller you want to use.
 ###Process
 Set the following values:
 
-Clean Repository: False
-Solution to build: Path of the solution you want to build.
-Configuration to build: Configuration should always be "Release".
-Platform to build: The platform target that was defined in the build definitions name.
-MSBuild arguments: /p:GenerateProjectSpecificOptputFolder=False
+- Clean Repository: False
+- Solution to build: Path of the solution you want to build.
+- Configuration to build: Configuration should always be "Release".
+- Platform to build: The platform target that was defined in the build definitions name.
+- MSBuild arguments: /p:GenerateProjectSpecificOptputFolder=False
+
+LightHouse is a registered trademark of Turneo AG (www.turneo.com).
